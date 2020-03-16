@@ -138,11 +138,6 @@
     self.searchIcon.frame = CGRectMake(5, (CGRectGetHeight(self.bounds) - 20)/2, 20, 20);
 }
 
-- (void)setSearchIconImageName:(NSString *)iconImageName iconSize:(CGSize)iconSize {
-    self.searchIcon.image = [UIImage imageNamed:iconImageName];
-    self.searchIcon.frame = CGRectMake(self.searchIcon.frame.origin.x, self.searchIcon.frame.origin.y, iconSize.width, iconSize.height);
-}
-
 #pragma mark - TextFieldSearchViewDelegate
 - (void)searchTitle:(NSString *_Nonnull)title searchType:(TextFieldSearchType)searchType {
     if ([self.delegate respondsToSelector:@selector(searchTitle:searchType:)]) {

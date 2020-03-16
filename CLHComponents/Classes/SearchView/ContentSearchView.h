@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id <ContentSearchViewDelegate>delegate;
 
+@property (nonatomic, strong, readonly) UIImageView *searchIcon;
 @property (nonatomic, strong, readonly) TextFieldSearchView *searchField;
 @property (nonatomic, strong, readonly) UIButton *rightBtn;
 
