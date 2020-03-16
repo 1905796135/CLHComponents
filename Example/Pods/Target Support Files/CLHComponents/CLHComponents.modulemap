@@ -1,0 +1,6 @@
+framework module CLHComponents {
+  umbrella header "CLHComponents-umbrella.h"
+
+  export *
+  module * { export * }
+}

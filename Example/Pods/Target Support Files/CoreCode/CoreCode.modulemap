@@ -1,0 +1,6 @@
+framework module CoreCode {
+  umbrella header "CoreCode-umbrella.h"
+
+  export *
+  module * { export * }
+}

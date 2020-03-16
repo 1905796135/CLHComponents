@@ -1,0 +1,55 @@
+PODS:
+  - CLHComponents (0.1.0):
+    - CLHComponents/LinkTextView (= 0.1.0)
+    - CLHComponents/LMReport (= 0.1.0)
+    - CLHComponents/SearchView (= 0.1.0)
+    - CLHComponents/ShadeRoundLoop (= 0.1.0)
+    - CLHComponents/WaterMarkView (= 0.1.0)
+    - CoreCode
+    - Masonry
+  - CLHComponents/LinkTextView (0.1.0):
+    - CoreCode
+    - Masonry
+  - CLHComponents/LMReport (0.1.0):
+    - CoreCode
+    - Masonry
+  - CLHComponents/SearchView (0.1.0):
+    - CoreCode
+    - Masonry
+  - CLHComponents/ShadeRoundLoop (0.1.0):
+    - CoreCode
+    - Masonry
+  - CLHComponents/WaterMarkView (0.1.0):
+    - CoreCode
+    - Masonry
+  - CoreCode (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.2.0)
+  - ReactiveObjC (3.1.1)
+
+DEPENDENCIES:
+  - CLHComponents (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - CoreCode
+    - Masonry
+    - MBProgressHUD
+    - ReactiveObjC
+
+EXTERNAL SOURCES:
+  CLHComponents:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CLHComponents: 174ac49da5a5f268b263d143d52b11354f51a102
+  CoreCode: c20bffff4480329ba85c5ab3d82525cd0f52f091
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+
+PODFILE CHECKSUM: b0a8f7e685c7a8de2d29ac93c77e2175f644f74d
+
+COCOAPODS: 1.8.4

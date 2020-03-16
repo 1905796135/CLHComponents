@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'CLHComponents'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of CLHComponents.'
+  s.summary          = 'iOS开发 常用组件库'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,26 +17,56 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+   s.description      = <<-DESC
+   
+                         WaterMarkView       创建一个带水印的 UIImageView
+                         WatermarkView *watermark = [[WatermarkView alloc]initWithFrame:self.view.bounds WithText:@"水印文字"];
+                         [self.view addSubview:watermark];
+                         
+                         LMReport            表格组件
+                         LinkTextView        可点击的TextView
+                         SearchView          搜索框 可自定义搜索框样式
+                        DESC
 
-  s.homepage         = 'https://github.com/clh2046@163.com/CLHComponents'
+  s.homepage         = 'https://github.com/1905796135/CLHComponents'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'clh2046@163.com' => 'clh2046@163.com' }
-  s.source           = { :git => 'https://github.com/clh2046@163.com/CLHComponents.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/1905796135/CLHComponents.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'CLHComponents/Classes/**/*'
+  s.source_files = 'CLHComponents/Classes/**/*.{h,m}'
+  s.public_header_files = 'CLHComponents/Classes/**/*.h'
+  s.dependency 'CoreCode'
+  s.dependency 'Masonry'
   
-  # s.resource_bundles = {
-  #   'CLHComponents' => ['CLHComponents/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.subspec 'LinkTextView' do |linkTextView|
+      linkTextView.source_files = 'CLHComponents/Classes/LinkTextView/**/*'
+      linkTextView.public_header_files = 'CLHComponents/Classes/LinkTextView/**/*.h'
+  end
+  
+  s.subspec 'LMReport' do |lMReport|
+      lMReport.source_files = 'CLHComponents/Classes/LMReport/**/*'
+      lMReport.public_header_files = 'CLHComponents/Classes/LMReport/**/*.h'
+  end
+  
+  s.subspec 'SearchView' do |searchView|
+      searchView.source_files = 'CLHComponents/Classes/SearchView/**/*'
+      searchView.public_header_files = 'CLHComponents/Classes/SearchView/**/*.h'
+      searchView.resource_bundles = {
+        'SearchViewResources' => ['CLHComponents/Assets/SearchView/*.png']
+      }
+  end
+  
+  s.subspec 'WaterMarkView' do |waterMarkView|
+      waterMarkView.source_files = 'CLHComponents/Classes/WaterMarkView/**/*'
+      waterMarkView.public_header_files = 'CLHComponents/Classes/WaterMarkView/**/*.h'
+  end
+  
+  s.subspec 'ShadeRoundLoop' do |shadeRoundLoop|
+      shadeRoundLoop.source_files = 'CLHComponents/Classes/ShadeRoundLoop/**/*'
+      shadeRoundLoop.public_header_files = 'CLHComponents/Classes/ShadeRoundLoop/**/*.h'
+  end
 end
