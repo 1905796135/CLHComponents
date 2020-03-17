@@ -40,6 +40,11 @@
       "public_header_files": "CLHComponents/Classes/LMReport/**/*.h"
     },
     {
+      "name": "ScrollOptionsMenu",
+      "source_files": "CLHComponents/Classes/ScrollOptionsMenu/**/*",
+      "public_header_files": "CLHComponents/Classes/ScrollOptionsMenu/**/*.h"
+    },
+    {
       "name": "SearchView",
       "source_files": "CLHComponents/Classes/SearchView/**/*",
       "public_header_files": "CLHComponents/Classes/SearchView/**/*.h",

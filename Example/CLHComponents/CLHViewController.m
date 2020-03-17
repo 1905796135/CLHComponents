@@ -9,6 +9,7 @@
 #import "CLHViewController.h"
 #import <CoreCode/CoreCode.h>
 #import <CLHComponents/CLHComponents.h>
+#import "ComponentScrollViewVC.h"
 
 @interface CLHViewController ()<ContentSearchViewDelegate,CustomTextViewDelegate,FormComponentViewDelegate>
 
@@ -27,6 +28,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.view addSubview:self.mainScrollView];
     
     WaterMarkView *waterMarkView = [[WaterMarkView alloc]initWithFrame:CGRectMake(50, 50, UIScreen.width - 100, 100) withText:@"水印" textFont:[UIFont systemFontOfSize:12] textColor:[UIColor redColor] h_space:30 v_space:30];
@@ -63,7 +65,8 @@
 }
 #pragma mark - CustomTextViewDelegate
 - (void)titleDidClicked:(LinkCustomTextView *)textView {
-    [self showLoadingWithMessage:textView.customTextView.text hideAfter:2.5];
+//    [self showLoadingWithMessage:textView.customTextView.text hideAfter:2.5];
+    [self.navigationController pushViewController:[ComponentScrollViewVC new] animated:YES];
 }
 #pragma mark - FormComponentViewDelegate
 - (void)didTapFormItemWithModel:(LMRModel *)model

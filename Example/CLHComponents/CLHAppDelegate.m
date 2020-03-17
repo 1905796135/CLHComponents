@@ -7,12 +7,13 @@
 //
 
 #import "CLHAppDelegate.h"
-
+#import "CLHViewController.h"
 @implementation CLHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:[CLHViewController new]];
     return YES;
 }
 

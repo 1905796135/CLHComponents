@@ -2,6 +2,7 @@ PODS:
   - CLHComponents (0.1.0):
     - CLHComponents/LinkTextView (= 0.1.0)
     - CLHComponents/LMReport (= 0.1.0)
+    - CLHComponents/ScrollOptionsMenu (= 0.1.0)
     - CLHComponents/SearchView (= 0.1.0)
     - CLHComponents/ShadeRoundLoop (= 0.1.0)
     - CLHComponents/WaterMarkView (= 0.1.0)
@@ -11,6 +12,9 @@ PODS:
     - CoreCode
     - Masonry
   - CLHComponents/LMReport (0.1.0):
+    - CoreCode
+    - Masonry
+  - CLHComponents/ScrollOptionsMenu (0.1.0):
     - CoreCode
     - Masonry
   - CLHComponents/SearchView (0.1.0):
@@ -44,7 +48,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CLHComponents: 174ac49da5a5f268b263d143d52b11354f51a102
+  CLHComponents: 67146b1ff97058bb476045874a2690f51e4ce02b
   CoreCode: c20bffff4480329ba85c5ab3d82525cd0f52f091
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406

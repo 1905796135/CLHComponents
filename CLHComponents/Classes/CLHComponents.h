@@ -12,6 +12,8 @@
 
 #import <CLHComponents/LMReport.h>
 
+#import <CLHComponents/ScrollOptionsMenuView.h>
+
 #import <CLHComponents/ContentSearchView.h>
 
 #import <CLHComponents/DataRoundLoopView.h>

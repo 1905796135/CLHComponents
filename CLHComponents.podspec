@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CLHComponents'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'iOS开发 常用组件库'
 
 # This description is used to generate tags and improve search results.
@@ -23,9 +23,15 @@ Pod::Spec.new do |s|
                          WatermarkView *watermark = [[WatermarkView alloc]initWithFrame:self.view.bounds WithText:@"水印文字"];
                          [self.view addSubview:watermark];
                          
-                         LMReport            表格组件
+                         LMReport            多功能报表控件，支持整体样式和单元格样式的设置，支持复合表头、自适应行高、触
+                         摸事件响应已经排序，基本满足常见报表功能 摘自 https://github.com/littleMeaning/LMReport
+                        
+                         ScrollOptionsMenu   横向排版的菜单选择栏
+                        
                          LinkTextView        可点击的TextView
+                        
                          SearchView          搜索框 可自定义搜索框样式
+                        
                         DESC
 
   s.homepage         = 'https://github.com/1905796135/CLHComponents'
@@ -50,6 +56,11 @@ Pod::Spec.new do |s|
   s.subspec 'LMReport' do |lMReport|
       lMReport.source_files = 'CLHComponents/Classes/LMReport/**/*'
       lMReport.public_header_files = 'CLHComponents/Classes/LMReport/**/*.h'
+  end
+  
+  s.subspec 'ScrollOptionsMenu' do |scrollOptionsMenu|
+      scrollOptionsMenu.source_files = 'CLHComponents/Classes/ScrollOptionsMenu/**/*'
+      scrollOptionsMenu.public_header_files = 'CLHComponents/Classes/ScrollOptionsMenu/**/*.h'
   end
   
   s.subspec 'SearchView' do |searchView|
