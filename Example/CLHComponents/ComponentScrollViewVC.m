@@ -59,15 +59,18 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 //    NSLog(@"WillBeginDragging - %f  - %f",scrollView.contentOffset.x,scrollView.contentSize.width);
+    [self.optionsView willBeginDragging:scrollView];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 //    NSLog(@"DidScroll - %f  - %f",scrollView.contentOffset.x,scrollView.contentSize.width);
+    [self.optionsView didScroll:scrollView];
 }
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
 //    NSLog(@"WillEndDragging - %f  - %f",scrollView.contentOffset.x,scrollView.contentSize.width);
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self.optionsView updateSelectedIndex:scrollView.contentOffset.x/UIScreen.width];
+    [self.optionsView didEndDecelerating:scrollView];
+    
 }
 - (NSArray<NSString *>*)tits {
     return @[@"推asasasa荐",@"ddd",@"社sss会",@"科技",@"电影",@"国际新闻",@"体育新闻",@"国际体育新闻",@"aaa体育新闻"];

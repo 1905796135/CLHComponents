@@ -70,8 +70,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)setAnimateDuration:(CGFloat)duration;
 
-- (void)setConetentEdgeInsets:(UIEdgeInsets)edgeInsets;
+- (void)setContentEdgeInsets:(UIEdgeInsets)edgeInsets;
 
+- (void)willBeginDragging:(UIScrollView *)scrollView;
+- (void)didScroll:(UIScrollView *)scrollView;
+- (void)didEndDecelerating:(UIScrollView *)scrollView;
 @end
 
 NS_ASSUME_NONNULL_END
