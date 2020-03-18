@@ -1,5 +1,5 @@
 //
-//  Foundation+Safe.h
+//  Foundation+safe.h
 //  Core
 //
 //  Created by Jerry on 2017/9/5.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSArray<__covariant ObjectType> (Safe)
+@interface NSArray<__covariant ObjectType> (safe)
 
 - (nullable ObjectType)safeObjectAtIndex:(NSUInteger)index;
 
@@ -27,7 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface NSMutableArray<ObjectType> (Safe)
+@interface NSMutableArray<ObjectType> (safe)
+
+- (nullable ObjectType)safeObjectAtIndex:(NSUInteger)index;
+
+- (nullable ObjectType)safeObjectAtIndex:(NSUInteger)index defaultValue:(nullable ObjectType)defaultValue;
 
 - (void)safeAddObject:(ObjectType)object;
 
@@ -41,6 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable ObjectType)safeObjectAtIndexedSubscript:(NSUInteger)index;
 
+- (NSUInteger)safeIndexOfObject:(ObjectType)anObject;
+
+- (NSUInteger)safeIndexOfObject:(ObjectType)anObject defaultIndex:(NSUInteger)defaultIndex;
 @end
 
 @interface NSDictionary<__covariant KeyType, __covariant ObjectType> (Safe)
@@ -55,9 +62,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)safeSetObject:(ObjectType)object forKey:(KeyType)key;
 
+- (id)safeObjectForKey:(NSString *)key;
+
 @end
 
-@interface NSString (Safe)
+@interface NSString (safe)
 
 - (nullable NSString *)safeSubstringFromIndex:(NSUInteger)from;
 
@@ -77,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface NSMutableString (Safe)
+@interface NSMutableString (safe)
 
 - (void)safeInsertString:(NSString *)aString atIndex:(NSUInteger)loc;
 

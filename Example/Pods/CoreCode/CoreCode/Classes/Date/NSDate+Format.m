@@ -7,7 +7,7 @@
 //
 
 #import "NSDate+Format.h"
-#import "Foundation+Safe.h"
+#import "Foundation+safe.h"
 
 @implementation NSDate (Format)
 

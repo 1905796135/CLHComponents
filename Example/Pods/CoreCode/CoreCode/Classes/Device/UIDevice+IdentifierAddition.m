@@ -8,7 +8,7 @@
 
 #import "UIDevice+IdentifierAddition.h"
 #import "NSString+MD5.h"
-#import "Foundation+Safe.h"
+#import "Foundation+safe.h"
 #import "CoreKeychain.h"
 
 #include <sys/socket.h>

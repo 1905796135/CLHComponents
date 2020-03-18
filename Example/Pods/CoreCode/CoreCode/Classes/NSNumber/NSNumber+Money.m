@@ -7,7 +7,7 @@
 //
 
 //@import Core;
-#import "Foundation+Safe.h"
+#import "Foundation+safe.h"
 #import "NSString+plus.h"
 #import "NSNumber+Money.h"
 

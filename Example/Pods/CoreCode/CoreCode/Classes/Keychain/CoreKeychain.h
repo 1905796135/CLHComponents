@@ -10,6 +10,8 @@
 
 @interface CoreKeychain : NSObject
 
++ (instancetype)sharedInstance;
+
 /**
  *  只能set基本数据类型,NSNumber,NSString,NSData,NSDate等,不能set继承的Class
  *

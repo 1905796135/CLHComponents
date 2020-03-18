@@ -150,14 +150,41 @@
     [[[CoreAlertController window] rootViewController] presentViewController:alertController animated:YES completion:nil];
     return alertController;
 }
+
 + (UIWindow *)window {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    if (window == nil) {
-        if ([[UIApplication sharedApplication].delegate respondsToSelector:@selector(window)]) {
-            window = [[UIApplication sharedApplication].delegate window];
+    if (@available(iOS 13.0, *)) {
+        if ([CoreAlertController multipleScene] ){
+            for (UIWindowScene* windowScene in [UIApplication sharedApplication].connectedScenes) {
+                if (windowScene.activationState == UISceneActivationStateForegroundActive) {
+                    window = windowScene.windows.firstObject;
+                    break;
+                }
+            }
+        } else {
+            if (window == nil) {
+                if ([[UIApplication sharedApplication].delegate respondsToSelector:@selector(window)]) {
+                    window = [[UIApplication sharedApplication].delegate window];
+                }
+            }
+        }
+    } else {
+        if (window == nil) {
+            if ([[UIApplication sharedApplication].delegate respondsToSelector:@selector(window)]) {
+                window = [[UIApplication sharedApplication].delegate window];
+            }
         }
     }
     return window;
+}
+
++ (BOOL)multipleScene {
+    NSDictionary *infoDict = [NSBundle mainBundle].infoDictionary;
+    if ([infoDict objectForKey:@"UIApplicationSceneManifest"]) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 @end

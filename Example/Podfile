@@ -1,10 +1,12 @@
 use_frameworks!
-
 platform :ios, '8.0'
 
 target 'CLHComponents_Example' do
   pod 'CLHComponents', :path => '../'
-
+  #pod 'Masonry'
+  #pod 'SDWebImageFLPlugin', '~> 0.3.0'
+  #pod 'libwebp',:git => 'https://github.com/webmproject/libwebp.git'
+  pod 'CoreCode', :git => 'https://github.com/1905796135/CoreCode.git'
   target 'CLHComponents_Tests' do
     inherit! :search_paths
 

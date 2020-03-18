@@ -7,7 +7,6 @@
 //
 
 #import "NSObject+Runtime.h"
-#import "CoreMacros.h"
 
 @implementation PBObjectTypeWrapper
 
@@ -150,11 +149,11 @@ static char associatedObjectNamesKey;
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    PBLog(@"setValue %@ forUndefinedKey %@", value, key);
+    NSLog(@"setValue %@ forUndefinedKey %@", value, key);
 }
 
 - (void)setNilValueForKey:(NSString *)key {
-    PBLog(@"setNilValue forKey %@", key);
+    NSLog(@"setNilValue forKey %@", key);
 }
 
 static NSMutableDictionary *__propertiesMap;
@@ -262,13 +261,13 @@ static NSMutableDictionary *__propertiesInfoMap;
 + (BOOL)overrideMethod:(SEL)origSel withMethod:(SEL)altSel {
     Method origMethod = class_getInstanceMethod(self, origSel);
     if (!origMethod) {
-        PBLog(@"original method %@ not found for class %@", NSStringFromSelector(origSel), [self class]);
+        NSLog(@"original method %@ not found for class %@", NSStringFromSelector(origSel), [self class]);
         return NO;
     }
 
     Method altMethod = class_getInstanceMethod(self, altSel);
     if (!altMethod) {
-        PBLog(@"original method %@ not found for class %@", NSStringFromSelector(altSel), [self class]);
+        NSLog(@"original method %@ not found for class %@", NSStringFromSelector(altSel), [self class]);
         return NO;
     }
 
@@ -284,13 +283,13 @@ static NSMutableDictionary *__propertiesInfoMap;
 + (BOOL)exchangeMethod:(SEL)origSel withMethod:(SEL)altSel {
     Method originMethod = class_getInstanceMethod(self, origSel);
     if (!originMethod) {
-        PBLog(@"original method %@ not found for class %@", NSStringFromSelector(origSel), [self class]);
+        NSLog(@"original method %@ not found for class %@", NSStringFromSelector(origSel), [self class]);
         return NO;
     }
 
     Method altMethod = class_getInstanceMethod(self, altSel);
     if (!altMethod) {
-        PBLog(@"original method %@ not found for class %@", NSStringFromSelector(altSel), [self class]);
+        NSLog(@"original method %@ not found for class %@", NSStringFromSelector(altSel), [self class]);
         return NO;
     }
 

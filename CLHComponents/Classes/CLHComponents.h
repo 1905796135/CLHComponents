@@ -8,9 +8,15 @@
 #ifndef Components_h
 #define Components_h
 
+#import <CLHComponents/CirclePageView.h>
+
+#import <CLHComponents/LineationLabel.h>
+
 #import <CLHComponents/LinkCustomTextView.h>
 
 #import <CLHComponents/LMReport.h>
+
+#import <CLHComponents/NavigationTitleView.h>
 
 #import <CLHComponents/ScrollOptionsMenuView.h>
 
@@ -19,6 +25,8 @@
 #import <CLHComponents/DataRoundLoopView.h>
 
 #import <CLHComponents/ShadeRoundLoopView.h>
+
+#import <CLHComponents/ShadowView.h>
 
 #import <CLHComponents/WaterMarkView.h>
 

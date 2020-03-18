@@ -7,7 +7,7 @@
 //
 
 #import "LocalNotification.h"
-#import "Foundation+Safe.h"
+#import "Foundation+safe.h"
 #import "CoreAlertController.h"
 #import <UserNotifications/UserNotifications.h>
 

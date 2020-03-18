@@ -35,16 +35,16 @@
     waterMarkView.backgroundColor = [UIColor yellowColor];
     [self.mainScrollView addSubview:waterMarkView];
     
-    ContentSearchView *search = [[ContentSearchView alloc]initWithFrame:CGRectMake(50, 170, UIScreen.width - 100, 45) showType:ContentShowTypeIconRightBtn placeholder:@"搜一搜" delegate:self];
+    ContentSearchView *search = [[ContentSearchView alloc]initWithFrame:CGRectMake(50, CGRectGetMaxY(waterMarkView.frame) + 20, UIScreen.width - 100, 45) showType:ContentShowTypeIconRightBtn placeholder:@"搜一搜" delegate:self];
     search.backgroundColor = [UIColor whiteColor];
     [self.mainScrollView addSubview:search];
     
-    DataRoundLoopView *loopView = [[DataRoundLoopView alloc]initWithFrame:CGRectMake(50, 235, 167, 167) lineWidth:20];
+    DataRoundLoopView *loopView = [[DataRoundLoopView alloc]initWithFrame:CGRectMake(50, CGRectGetMaxY(search.frame) + 20, 167, 167) lineWidth:20];
     [loopView setIsSpace:YES];
     [loopView updateWithModels:@[[[DataRoundLoopModel alloc]initWithDictionary:@{@"name":@"name1",@"value":@(2),@"total":@(10),@"color":[UIColor yellowColor]}],[[DataRoundLoopModel alloc]initWithDictionary:@{@"name":@"name2",@"value":@(3),@"total":@(10),@"color":[UIColor redColor]}],[[DataRoundLoopModel alloc]initWithDictionary:@{@"name":@"name3",@"value":@(2),@"total":@(10),@"color":[UIColor blueColor]}],[[DataRoundLoopModel alloc]initWithDictionary:@{@"name":@"name3",@"value":@(3),@"total":@(10),@"color":[UIColor greenColor]}]]];
     [self.mainScrollView addSubview:loopView];
     
-    LinkCustomTextView *linkCustomTextView = [[LinkCustomTextView alloc]initWithFrame:CGRectMake(50, 422, UIScreen.width - 100, 20)];
+    LinkCustomTextView *linkCustomTextView = [[LinkCustomTextView alloc]initWithFrame:CGRectMake(50, CGRectGetMaxY(loopView.frame) + 20, UIScreen.width - 100, 20)];
     linkCustomTextView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     linkCustomTextView.selectedString = @"可以点";
     linkCustomTextView.selectedAttributeDic = @{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor blueColor]};
@@ -53,10 +53,29 @@
     linkCustomTextView.attributedString = [[NSMutableAttributedString alloc]initWithString:@"这个是可以点击的富文本" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]}];
     [self.mainScrollView addSubview:linkCustomTextView];
     
-    FormComponentView *formComponentView = [[FormComponentView alloc]initWithFrame:CGRectMake(50, 462, 200, 500)];
+    FormComponentView *formComponentView = [[FormComponentView alloc]initWithFrame:CGRectMake(50, CGRectGetMaxY(linkCustomTextView.frame)+20, 200, 150)];
     formComponentView.delegate = self;
     [formComponentView updateFormViewWithDataArray:[self formData]];
     [self.mainScrollView addSubview:formComponentView];
+    
+    ShadowView *shadowView = [[ShadowView alloc]initWithFrame:CGRectMake(50, CGRectGetMaxY(formComponentView.frame), 200, 200)];
+    //[_shadowView yc_shaodw];
+    [shadowView yc_cornerRadius:10];
+    //[_shadowView yc_verticalShaodwRadius:10 shadowColor:[UIColor blueColor] shadowOffset:CGSizeMake(10, 10)];
+    //[_shadowView yc_horizontalShaodwRadius:10 shadowColor:[UIColor blueColor] shadowOffset:CGSizeMake(10, 10)];
+    [shadowView yc_shaodwRadius:10 shadowColor:[UIColor blueColor] shadowOffset:CGSizeMake(10, 10) byShadowSide:YCShadowSideBottom|YCShadowSideRight];
+    [self.mainScrollView addSubview:shadowView];
+    
+    LineationLabel *label = [[LineationLabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(shadowView.frame)+20, UIScreen.width, 40)];
+    label.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    label.text = @"1234567891011121314";
+    label.textColor = [UIColor redColor];
+    label.lineColor = [UIColor blueColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.lineType = LineationLabelLineTypeMiddle;
+    [self.mainScrollView addSubview:label];
+    
+    [self.mainScrollView setContentSize:CGSizeMake(UIScreen.width, CGRectGetMaxY(label.frame) + 100)];
 }
 
 #pragma mark - ContentSearchViewDelegate

@@ -1,59 +1,219 @@
 PODS:
-  - CLHComponents (0.1.0):
-    - CLHComponents/LinkTextView (= 0.1.0)
-    - CLHComponents/LMReport (= 0.1.0)
-    - CLHComponents/ScrollOptionsMenu (= 0.1.0)
-    - CLHComponents/SearchView (= 0.1.0)
-    - CLHComponents/ShadeRoundLoop (= 0.1.0)
-    - CLHComponents/WaterMarkView (= 0.1.0)
+  - CLHComponents (1.0.0):
+    - CLHComponents/CirclePageView (= 1.0.0)
+    - CLHComponents/LineationLabel (= 1.0.0)
+    - CLHComponents/LinkTextView (= 1.0.0)
+    - CLHComponents/LMReport (= 1.0.0)
+    - CLHComponents/NavigationTitleView (= 1.0.0)
+    - CLHComponents/ScrollOptionsMenu (= 1.0.0)
+    - CLHComponents/SearchView (= 1.0.0)
+    - CLHComponents/ShadeRoundLoop (= 1.0.0)
+    - CLHComponents/ShadowView (= 1.0.0)
+    - CLHComponents/WaterMarkView (= 1.0.0)
+  - CLHComponents/CirclePageView (1.0.0):
     - CoreCode
+    - FLAnimatedImage
     - Masonry
-  - CLHComponents/LinkTextView (0.1.0):
-    - CoreCode
+    - SDWebImage
+    - SDWebImage/GIF
+    - SDWebImage/WebP
+  - CLHComponents/LineationLabel (1.0.0)
+  - CLHComponents/LinkTextView (1.0.0)
+  - CLHComponents/LMReport (1.0.0):
     - Masonry
-  - CLHComponents/LMReport (0.1.0):
-    - CoreCode
-    - Masonry
-  - CLHComponents/ScrollOptionsMenu (0.1.0):
-    - CoreCode
-    - Masonry
-  - CLHComponents/SearchView (0.1.0):
-    - CoreCode
-    - Masonry
-  - CLHComponents/ShadeRoundLoop (0.1.0):
-    - CoreCode
-    - Masonry
-  - CLHComponents/WaterMarkView (0.1.0):
-    - CoreCode
-    - Masonry
+  - CLHComponents/NavigationTitleView (1.0.0)
+  - CLHComponents/ScrollOptionsMenu (1.0.0)
+  - CLHComponents/SearchView (1.0.0)
+  - CLHComponents/ShadeRoundLoop (1.0.0)
+  - CLHComponents/ShadowView (1.0.0)
+  - CLHComponents/WaterMarkView (1.0.0)
   - CoreCode (1.0.0):
+    - CoreCode/Alert (= 1.0.0)
+    - CoreCode/ArchiveData (= 1.0.0)
+    - CoreCode/Authorization (= 1.0.0)
+    - CoreCode/AutoLayoput (= 1.0.0)
+    - CoreCode/Button (= 1.0.0)
+    - CoreCode/Calendar (= 1.0.0)
+    - CoreCode/Color (= 1.0.0)
+    - CoreCode/CoreJSONUtil (= 1.0.0)
+    - CoreCode/Date (= 1.0.0)
+    - CoreCode/DeadtimeTimer (= 1.0.0)
+    - CoreCode/Device (= 1.0.0)
+    - CoreCode/Dictionary (= 1.0.0)
+    - CoreCode/FileUtility (= 1.0.0)
+    - CoreCode/Image (= 1.0.0)
+    - CoreCode/ImageLoader (= 1.0.0)
+    - CoreCode/Keychain (= 1.0.0)
+    - CoreCode/LBS (= 1.0.0)
+    - CoreCode/Notification (= 1.0.0)
+    - CoreCode/NSNumber (= 1.0.0)
+    - CoreCode/Runtime (= 1.0.0)
+    - CoreCode/Safe (= 1.0.0)
+    - CoreCode/Screen (= 1.0.0)
+    - CoreCode/ScrollView (= 1.0.0)
+    - CoreCode/String (= 1.0.0)
+    - CoreCode/UIViewControllerExtension (= 1.0.0)
+    - CoreCode/UIViewExtension (= 1.0.0)
+    - CoreCode/UserDefault (= 1.0.0)
+    - CoreCode/Validation (= 1.0.0)
     - MBProgressHUD
     - ReactiveObjC
+  - CoreCode/Alert (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/ArchiveData (1.0.0):
+    - CoreCode/FileUtility
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Authorization (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/AutoLayoput (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Button (1.0.0):
+    - CoreCode/Runtime
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Calendar (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Color (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/CoreJSONUtil (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Date (1.0.0):
+    - CoreCode/Safe
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/DeadtimeTimer (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Device (1.0.0):
+    - CoreCode/Keychain
+    - CoreCode/Safe
+    - CoreCode/String
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Dictionary (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/FileUtility (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Image (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/ImageLoader (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Keychain (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/LBS (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Notification (1.0.0):
+    - CoreCode/Alert
+    - CoreCode/Safe
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/NSNumber (1.0.0):
+    - CoreCode/Safe
+    - CoreCode/String
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Runtime (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Safe (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Screen (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/ScrollView (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/String (1.0.0):
+    - CoreCode/CoreJSONUtil
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/UIViewControllerExtension (1.0.0):
+    - CoreCode/Image
+    - CoreCode/Runtime
+    - CoreCode/UIViewExtension
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/UIViewExtension (1.0.0):
+    - CoreCode/Runtime
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/UserDefault (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Validation (1.0.0):
+    - MBProgressHUD
+    - ReactiveObjC
+  - FLAnimatedImage (1.0.12)
+  - libwebp (1.1.0):
+    - libwebp/demux (= 1.1.0)
+    - libwebp/mux (= 1.1.0)
+    - libwebp/webp (= 1.1.0)
+  - libwebp/demux (1.1.0):
+    - libwebp/webp
+  - libwebp/mux (1.1.0):
+    - libwebp/demux
+  - libwebp/webp (1.1.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - ReactiveObjC (3.1.1)
+  - SDWebImage (4.4.8):
+    - SDWebImage/Core (= 4.4.8)
+  - SDWebImage/Core (4.4.8)
+  - SDWebImage/GIF (4.4.8):
+    - FLAnimatedImage (~> 1.0)
+    - SDWebImage/Core
+  - SDWebImage/WebP (4.4.8):
+    - libwebp (< 2.0, >= 0.5)
+    - SDWebImage/Core
 
 DEPENDENCIES:
   - CLHComponents (from `../`)
+  - CoreCode (from `https://github.com/1905796135/CoreCode.git`)
 
 SPEC REPOS:
   trunk:
-    - CoreCode
+    - FLAnimatedImage
+    - libwebp
     - Masonry
     - MBProgressHUD
     - ReactiveObjC
+    - SDWebImage
 
 EXTERNAL SOURCES:
   CLHComponents:
     :path: "../"
+  CoreCode:
+    :git: https://github.com/1905796135/CoreCode.git
+
+CHECKOUT OPTIONS:
+  CoreCode:
+    :commit: d3a8ae96eeae00659684bb74c277f8d05684ac69
+    :git: https://github.com/1905796135/CoreCode.git
 
 SPEC CHECKSUMS:
-  CLHComponents: 67146b1ff97058bb476045874a2690f51e4ce02b
-  CoreCode: c20bffff4480329ba85c5ab3d82525cd0f52f091
+  CLHComponents: 7e863dbd6c8ad538f90079293c005b0b3ecb7cd0
+  CoreCode: 6f9d59d12b17bb56cfba0fce757038db1e38f664
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  libwebp: 04242ef451672185c1fe41b285a034d2fbda483c
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
 
-PODFILE CHECKSUM: b0a8f7e685c7a8de2d29ac93c77e2175f644f74d
+PODFILE CHECKSUM: 4b7227ad88a4426dc761712b0506495ae343070c
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

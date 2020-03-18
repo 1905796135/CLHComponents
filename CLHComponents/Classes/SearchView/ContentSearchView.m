@@ -5,7 +5,7 @@
 //
 
 #import "ContentSearchView.h"
-#import <CoreCode/CoreCode.h>
+
 @interface ContentSearchView ()<TextFieldSearchViewDelegate> {
     NSString *_placeholder;
     ContentSearchShowType _showType;
@@ -32,16 +32,7 @@
 - (UIImageView *)searchIcon {
     if (!_searchIcon) {
         _searchIcon = [[UIImageView alloc]init];
-        // 注意图片名称的格式，必须写全 @2x 或者 @3x  后缀名都得写
-        NSString *imageName = @"search_icon_black@2x.png";
-        // 获取当前的bundle,self只是在当前pod库中的一个类，也可以随意写一个其他的类
-        NSBundle *currentBundle = [NSBundle bundleForClass:[self class]];
-        // 获取当前bundle的名称
-        // 获取图片的路径
-        NSString *imagePath = [currentBundle pathForResource:imageName ofType:nil inDirectory:@"SearchViewResources.bundle"];
-        // 获取图片
-        UIImage *imageFile = [UIImage imageWithContentsOfFile:imagePath];
-        _searchIcon.image = imageFile;
+        _searchIcon.image = [self imageWithFileName:@"search_icon_black" bundleName:@"SearchViewResources" extension:@"png" aClass:[self class]];
         _searchIcon.backgroundColor = [UIColor clearColor];
     }
     return _searchIcon;
@@ -111,9 +102,8 @@
         
         [self refrestSearchViewWithEdgeInsets:_searchFieldEdgeInsets];
         
-        [self observeNotification:UIKeyboardWillShowNotification];
-        [self observeNotification:UIKeyboardWillHideNotification];
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:UIKeyboardWillHideNotification object:nil];
     }
     return self;
 }
@@ -186,7 +176,10 @@
     [super resignFirstResponder];
     [self.searchField resignFirstResponder];
 }
-
+- (void)setSearchIconImageName:(NSString *)iconImageName iconSize:(CGSize)iconSize {
+    self.searchIcon.image = [UIImage imageNamed:iconImageName];
+    self.searchIcon.frame = CGRectMake(self.searchIcon.frame.origin.x, self.searchIcon.frame.origin.y, iconSize.width, iconSize.height);
+}
 - (void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder {
     [self.searchField setAttributedPlaceholder:attributedPlaceholder];
 }
@@ -208,9 +201,34 @@
         self.rightBtn.hidden = YES;
     }
 }
-
+- (UIImage*)imageWithFileName:(NSString *)name
+                   bundleName:(NSString *)bundleName
+                    extension:(NSString *)extension
+                       aClass:(Class)aClass{
+    NSArray * components = [name componentsSeparatedByString:@"."];
+    if ([components count] >= 2) {
+        NSUInteger lastIndex = components.count - 1;
+        extension = [components objectAtIndex:lastIndex];
+        name = [name substringToIndex:(name.length - (extension.length + 1))];
+    }
+    NSString * path = @"";
+    // 如果为Retina屏幕且存在对应图片，则返回Retina图片，否则查找普通图片
+    if ([UIScreen mainScreen].scale == 2.0
+        || [UIScreen mainScreen].scale == 3.0) {
+        name = [name stringByAppendingString:[NSString stringWithFormat:@"@%dx",(int)[UIScreen mainScreen].scale]];
+        NSURL * url = [[NSBundle bundleForClass:aClass] URLForResource:[NSString stringWithFormat:@"%@.bundle",bundleName] withExtension:nil];
+        NSBundle * bundle = [NSBundle bundleWithURL:url];
+         path = [bundle pathForResource:name ofType:extension];
+    }
+    
+    if (path != nil) {
+        return [UIImage imageWithContentsOfFile:path];
+    }
+    return nil;
+    
+}
 - (void)dealloc {
-    [self unobserveNotification:UIKeyboardWillShowNotification];
-    [self unobserveNotification:UIKeyboardWillHideNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 @end

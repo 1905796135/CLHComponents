@@ -1,10 +1,9 @@
 #import "WaterMarkView.h"
-#import <CoreCode/CoreCode.h>
 
 @implementation WaterMarkView
 
 - (instancetype)initWithFrame:(CGRect)frame withText:(NSString *)text {
-    self = [self initWithFrame:frame withText:text textFont:[UIFont systemFontOfSize:14] textColor:rgbA(152, 152, 152,0.3) h_space:80 v_space:80];
+    self = [self initWithFrame:frame withText:text textFont:[UIFont systemFontOfSize:14] textColor:[UIColor colorWithRed:152.0 / 255.0 green:152.0 / 255.0 blue:152.0 / 255.0 alpha:0.3] h_space:80 v_space:80];
     if (self){
         
     }

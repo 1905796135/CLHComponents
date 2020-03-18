@@ -7,7 +7,7 @@
 //
 
 #import "NSString+RSA.h"
-#import "CoreMacros.h"
+//#import "CoreMacros.h"
 
 @implementation NSString (RSA)
 
@@ -312,7 +312,7 @@ static NSData *decryptDataWithKeyRef(NSData *data, SecKeyRef keyRef) {
                 &outlen
         );
         if (status != 0) {
-            PBLog(@"SecKeyEncrypt fail. Error Code: %d", (int) status);
+            NSLog(@"SecKeyEncrypt fail. Error Code: %d", (int) status);
             ret = nil;
             break;
         } else {
@@ -373,7 +373,7 @@ static NSData *encryptDataWithKeyRef(NSData *data, SecKeyRef keyRef, BOOL isSign
             );
         }
         if (status != 0) {
-            PBLog(@"SecKeyEncrypt fail. Error Code: %d", (int) status);
+            NSLog(@"SecKeyEncrypt fail. Error Code: %d", (int) status);
             ret = nil;
             break;
         } else {

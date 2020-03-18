@@ -90,7 +90,6 @@
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
     _searchTitle = @"";
     _searchType = TextFieldSearchClear;
-    [self.searchField resignFirstResponder];
     [self beginSearch];
     return YES;
 }

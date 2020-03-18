@@ -7,7 +7,7 @@
 //
 
 #import "LMRModel.h"
-#import <CoreCode/CoreCode.h>
+//#import <CoreCode/CoreCode.h>
 @implementation LMRModel
 
 - (NSMutableDictionary *)routerParam {
@@ -21,8 +21,8 @@
                     size:(CGSize)size {
     LMRModel *model = [LMRModel modelTitle:title size:size routerKey:nil routerParam:nil];
     model.font = [UIFont fontWithName:@"PingFangSC-Medium" size:13];
-    model.backgroundColor = rgb(233,238,248);
-    model.textColor = rgb(25,66,102);
+    model.backgroundColor = [UIColor colorWithRed:233.0 / 255.0 green:238.0 / 255.0 blue:248.0 / 255.0 alpha:1];
+    model.textColor = [UIColor colorWithRed:25.0 / 255.0 green:66.0 / 255.0 blue:102.0 / 255.0 alpha:1];
     return model;
 }
 + (LMRModel *)modelTitle:(NSString *)title
