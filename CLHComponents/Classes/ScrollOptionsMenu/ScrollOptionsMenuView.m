@@ -209,7 +209,7 @@
     } else {
         itemSize = [model.title sizeWithAttributes:@{NSFontAttributeName:_normalFont}];
     }
-    return itemSize;
+    return CGSizeMake(itemSize.width, collectionView.bounds.size.height);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
