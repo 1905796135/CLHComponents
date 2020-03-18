@@ -45,7 +45,7 @@
     self.titleBtn.selected = model.isSelected;
 }
 
-- (void)updateTitleColor:(UIColor *_Nullable)normalColor
+- (void)setNormalTitleColor:(UIColor *_Nullable)normalColor
               normalFont:(UIFont *_Nullable)normalFont
            selectedColor:(UIColor *_Nullable)selectedColor
             selectedFont:(UIFont *_Nullable)selectedFont {
@@ -85,6 +85,7 @@
     NSIndexPath *_currentSelectedIndexPath;
     CGFloat _startContentOffset;
     BOOL _isTapSelected;
+    ScrollDirection _scrollDirection;
 }
 
 - (UICollectionView *)collectionView {
@@ -111,13 +112,20 @@
     return _highlightLine;
 }
 - (instancetype)initWithFrame:(CGRect)frame {
+    self = [self initWithFrame:frame scrollDirection:ScrollDirectionHorizontal];
+    if (self){
+        
+    }
+    return self;
+}
+- (instancetype)initWithFrame:(CGRect)frame scrollDirection:(ScrollDirection)scrollDirection {
     self = [super initWithFrame:frame];
     if (self) {
+        _scrollDirection = scrollDirection;
         [self setDefoutWithFrame:frame];
     }
     return self;
 }
-
 - (void)setDefoutWithFrame:(CGRect)frame {
     _animateDuration = 0.23;
     _isTapSelected = NO;
@@ -157,10 +165,10 @@
     [self setLineSize:_lineSize];
     self.highlightLine.center = [self getLineFrameWithIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 }
-- (void)updateTitleColor:(UIColor *_Nullable)normalColor
-              normalFont:(UIFont *_Nullable)normalFont
-           selectedColor:(UIColor *_Nullable)selectedColor
-            selectedFont:(UIFont *_Nullable)selectedFont {
+- (void)setNormalTitleColor:(UIColor *_Nullable)normalColor
+                 normalFont:(UIFont *_Nullable)normalFont
+              selectedColor:(UIColor *_Nullable)selectedColor
+               selectedFont:(UIFont *_Nullable)selectedFont {
     
     _normalColor = normalColor?:_normalColor;
     _normalFont = normalFont?:_normalFont;
@@ -189,7 +197,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     OptionsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cell_Identifier forIndexPath:indexPath];
     [cell updateWithModel:[self.dataArray objectAtIndex:indexPath.row]];
-    [cell updateTitleColor:_normalColor normalFont:_normalFont selectedColor:_selectedColor selectedFont:_selectedFont];
+    [cell setNormalTitleColor:_normalColor normalFont:_normalFont selectedColor:_selectedColor selectedFont:_selectedFont];
     return cell;
 }
 
@@ -225,34 +233,71 @@
 }
 - (void)willBeginDragging:(UIScrollView *)scrollView {
     _isTapSelected = NO;
-    _startContentOffset = scrollView.contentOffset.x;
+    switch (_scrollDirection) {
+        case ScrollDirectionVertical:
+            _startContentOffset = scrollView.contentOffset.y;
+            break;
+        default:
+            _startContentOffset = scrollView.contentOffset.x;
+            break;
+    }
 }
 
 - (void)didScroll:(UIScrollView *)scrollView {
     if (_isTapSelected) { return; }
-    CGFloat scrollWidth = fabs(scrollView.contentOffset.x - _startContentOffset);
-    if(scrollView.contentOffset.x - _startContentOffset > 0) {
-        NSIndexPath *nextIndexPath = [self getNextInexPathWithCurrendIndexPath:_currentSelectedIndexPath];
-        if(![nextIndexPath isEqual:_currentSelectedIndexPath]) {
-            CGPoint nextLinePoint = [self getLineFrameWithIndexPath:nextIndexPath];
-            CGFloat toNextDifference = nextLinePoint.x - self.highlightLine.center.x;
-            CGFloat toNextaAddMaxWidth = toNextDifference + _lineSize.width / 2;
-            self.highlightLine.frame = CGRectMake(self.highlightLine.frame.origin.x, self.highlightLine.frame.origin.y, _lineSize.width + (scrollWidth/scrollView.bounds.size.width*toNextaAddMaxWidth), _lineSize.height);
+    if (_scrollDirection == ScrollDirectionVertical) {
+        CGFloat scrollHeight = fabs(scrollView.contentOffset.y - _startContentOffset);
+        if(scrollView.contentOffset.y - _startContentOffset > 0) {
+            NSIndexPath *nextIndexPath = [self getNextInexPathWithCurrendIndexPath:_currentSelectedIndexPath];
+            if(![nextIndexPath isEqual:_currentSelectedIndexPath]) {
+                CGPoint nextLinePoint = [self getLineFrameWithIndexPath:nextIndexPath];
+                CGFloat toNextDifference = nextLinePoint.x - self.highlightLine.center.x;
+                CGFloat toNextaAddMaxWidth = toNextDifference + _lineSize.width / 2;
+                self.highlightLine.frame = CGRectMake(self.highlightLine.frame.origin.x, self.highlightLine.frame.origin.y, _lineSize.width + (scrollHeight/scrollView.bounds.size.height*toNextaAddMaxWidth), _lineSize.height);
+            }
+        } else {
+            NSIndexPath *previousIndexPath = [self getPreviousInexPathWithCurrendIndexPath:_currentSelectedIndexPath];
+            if (![previousIndexPath isEqual:_currentSelectedIndexPath]) {
+                CGFloat previousLineX= [self getLineFrameWithIndexPath:previousIndexPath].x - _lineSize.width/2;
+                CGFloat currentLineX = [self getLineFrameWithIndexPath:_currentSelectedIndexPath].x - _lineSize.width/2;
+                CGFloat toPreviousDifference = currentLineX - previousLineX;
+                
+                self.highlightLine.frame = CGRectMake(currentLineX - (scrollHeight/scrollView.bounds.size.height*toPreviousDifference), self.highlightLine.frame.origin.y, _lineSize.width + (scrollHeight/scrollView.bounds.size.height*toPreviousDifference), _lineSize.height);
+            }
         }
+        
     } else {
-        NSIndexPath *previousIndexPath = [self getPreviousInexPathWithCurrendIndexPath:_currentSelectedIndexPath];
-        if (![previousIndexPath isEqual:_currentSelectedIndexPath]) {
-            CGFloat previousLineX= [self getLineFrameWithIndexPath:previousIndexPath].x - _lineSize.width/2;
-            CGFloat currentLineX = [self getLineFrameWithIndexPath:_currentSelectedIndexPath].x - _lineSize.width/2;
-            CGFloat toPreviousDifference = currentLineX - previousLineX;
-            
-            self.highlightLine.frame = CGRectMake(currentLineX - (scrollWidth/scrollView.bounds.size.width*toPreviousDifference), self.highlightLine.frame.origin.y, _lineSize.width + (scrollWidth/scrollView.bounds.size.width*toPreviousDifference), _lineSize.height);
+        
+        CGFloat scrollWidth = fabs(scrollView.contentOffset.x - _startContentOffset);
+        if(scrollView.contentOffset.x - _startContentOffset > 0) {
+            NSIndexPath *nextIndexPath = [self getNextInexPathWithCurrendIndexPath:_currentSelectedIndexPath];
+            if(![nextIndexPath isEqual:_currentSelectedIndexPath]) {
+                CGPoint nextLinePoint = [self getLineFrameWithIndexPath:nextIndexPath];
+                CGFloat toNextDifference = nextLinePoint.x - self.highlightLine.center.x;
+                CGFloat toNextaAddMaxWidth = toNextDifference + _lineSize.width / 2;
+                self.highlightLine.frame = CGRectMake(self.highlightLine.frame.origin.x, self.highlightLine.frame.origin.y, _lineSize.width + (scrollWidth/scrollView.bounds.size.width*toNextaAddMaxWidth), _lineSize.height);
+            }
+        } else {
+            NSIndexPath *previousIndexPath = [self getPreviousInexPathWithCurrendIndexPath:_currentSelectedIndexPath];
+            if (![previousIndexPath isEqual:_currentSelectedIndexPath]) {
+                CGFloat previousLineX= [self getLineFrameWithIndexPath:previousIndexPath].x - _lineSize.width/2;
+                CGFloat currentLineX = [self getLineFrameWithIndexPath:_currentSelectedIndexPath].x - _lineSize.width/2;
+                CGFloat toPreviousDifference = currentLineX - previousLineX;
+                
+                self.highlightLine.frame = CGRectMake(currentLineX - (scrollWidth/scrollView.bounds.size.width*toPreviousDifference), self.highlightLine.frame.origin.y, _lineSize.width + (scrollWidth/scrollView.bounds.size.width*toPreviousDifference), _lineSize.height);
+            }
         }
     }
+    
 }
 
 - (void)didEndDecelerating:(UIScrollView *)scrollView {
-    [self updateSelectedIndex:scrollView.contentOffset.x/scrollView.bounds.size.width];
+    if (_scrollDirection == ScrollDirectionVertical) {
+        [self updateSelectedIndex:scrollView.contentOffset.y/scrollView.bounds.size.height];
+    } else {
+       [self updateSelectedIndex:scrollView.contentOffset.x/scrollView.bounds.size.width];
+    }
+    
 }
 
 - (NSIndexPath *)getPreviousInexPathWithCurrendIndexPath:(NSIndexPath *)indexPath {

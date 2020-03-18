@@ -21,7 +21,7 @@
 
 - (void)updateWithModel:(OptionsModel *_Nullable)model;
 
-- (void)updateTitleColor:(UIColor *_Nullable)normalColor
+- (void)setNormalTitleColor:(UIColor *_Nullable)normalColor
               normalFont:(UIFont *_Nullable)normalFont
            selectedColor:(UIColor *_Nullable)selectedColor
             selectedFont:(UIFont *_Nullable)selectedFont;
@@ -35,11 +35,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+typedef NS_ENUM(NSInteger,ScrollDirection) {
+    ScrollDirectionHorizontal,//所关联的 ScrollView 水平滚动
+    ScrollDirectionVertical,//所关联的 ScrollView 竖直滚动
+};
+
 @interface ScrollOptionsMenuView : UIView
 
 @property (nonatomic, weak) id <ScrollOptionsMenuDelegate>delegate;
 @property (nonatomic, strong, readonly) UIImageView *highlightLine;
 
+- (instancetype)initWithFrame:(CGRect)frame scrollDirection:(ScrollDirection)scrollDirection;
 
 - (void)updateSelectedIndex:(NSInteger)selectedIndex;
 
@@ -50,10 +56,10 @@ NS_ASSUME_NONNULL_BEGIN
  * selectedColor 选中时的 color
  * titleFont item 文描 字体
  */
-- (void)updateTitleColor:(UIColor *_Nullable)normalColor
-              normalFont:(UIFont *_Nullable)normalFont
-           selectedColor:(UIColor *_Nullable)selectedColor
-            selectedFont:(UIFont *_Nullable)selectedFont;
+- (void)setNormalTitleColor:(UIColor *_Nullable)normalColor
+                 normalFont:(UIFont *_Nullable)normalFont
+              selectedColor:(UIColor *_Nullable)selectedColor
+               selectedFont:(UIFont *_Nullable)selectedFont;
 
 /**
  * 设置选中线 的size
@@ -75,6 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)willBeginDragging:(UIScrollView *)scrollView;
 - (void)didScroll:(UIScrollView *)scrollView;
 - (void)didEndDecelerating:(UIScrollView *)scrollView;
+
 @end
 
 NS_ASSUME_NONNULL_END
