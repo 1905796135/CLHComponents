@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CLHComponents'
-  s.version          = '0.1.2'
+  s.version          = '0.1.9'
   s.summary          = 'iOS开发 常用组件库'
 
 # This description is used to generate tags and improve search results.
@@ -18,20 +18,24 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
    s.description      = <<-DESC
+                         CirclePageView 轮播图组件
    
-                         WaterMarkView       创建一个带水印的 UIImageView
-                         WatermarkView *watermark = [[WatermarkView alloc]initWithFrame:self.view.bounds WithText:@"水印文字"];
-                         [self.view addSubview:watermark];
+                         LineationLabel 创建一个可设置 划线（上，中，下） 的Label
                          
+                         LinkTextView        可点击的TextView
+                            
                          LMReport            多功能报表控件，支持整体样式和单元格样式的设置，支持复合表头、自适应行高、触
                          摸事件响应已经排序，基本满足常见报表功能 摘自 https://github.com/littleMeaning/LMReport
                         
                          ScrollOptionsMenu   横向排版的菜单选择栏
-                        
-                         LinkTextView        可点击的TextView
-                        
                          SearchView          搜索框 可自定义搜索框样式
                         
+                         ShadeRoundLoop  DataRoundLoopView 饼状图  ShadeRoundLoopView 渐变色圆环
+                        
+                         ShadowView 创建一个可设置同时设置圆角和阴影的View
+                         
+                         
+                         WaterMarkView       创建一个带水印的 UIImageView
                         DESC
 
   s.homepage         = 'https://github.com/1905796135/CLHComponents'
@@ -43,10 +47,24 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'CLHComponents/Classes/**/*.{h,m}'
-  s.public_header_files = 'CLHComponents/Classes/**/*.h'
+#  s.source_files = 'CLHComponents/Classes/**/*.{h,m}'
+  s.source_files = 'CLHComponents/Classes/CLHComponents.h'
+  s.public_header_files = 'CLHComponents/Classes/CLHComponents.h'
   s.dependency 'CoreCode'
-  s.dependency 'Masonry'
+  s.dependency 'Masonry', '~> 1.1.0'
+  s.dependency 'FLAnimatedImage'
+  s.dependency 'SDWebImage','~> 4.2.1'
+  s.dependency 'SDWebImage/GIF'
+  s.dependency 'SDWebImage/WebP'
+  s.subspec 'LineationLabel' do |lineationLabel|
+      lineationLabel.source_files = 'CLHComponents/Classes/LineationLabel/**/*'
+      lineationLabel.public_header_files = 'CLHComponents/Classes/LineationLabel/**/*.h'
+  end
+  
+  s.subspec 'CirclePageView' do |circlePageView|
+      circlePageView.public_header_files = 'CLHComponents/Classes/CirclePageView/**/*.h'
+      circlePageView.source_files = 'CLHComponents/Classes/CirclePageView/**/*'
+  end
   
   s.subspec 'LinkTextView' do |linkTextView|
       linkTextView.source_files = 'CLHComponents/Classes/LinkTextView/**/*'
@@ -56,6 +74,11 @@ Pod::Spec.new do |s|
   s.subspec 'LMReport' do |lMReport|
       lMReport.source_files = 'CLHComponents/Classes/LMReport/**/*'
       lMReport.public_header_files = 'CLHComponents/Classes/LMReport/**/*.h'
+  end
+  
+  s.subspec 'NavigationTitleView' do |lMReport|
+      lMReport.source_files = 'CLHComponents/Classes/NavigationTitleView/**/*'
+      lMReport.public_header_files = 'CLHComponents/Classes/NavigationTitleView/**/*.h'
   end
   
   s.subspec 'ScrollOptionsMenu' do |scrollOptionsMenu|
@@ -71,13 +94,19 @@ Pod::Spec.new do |s|
       }
   end
   
+  s.subspec 'ShadeRoundLoop' do |shadeRoundLoop|
+      shadeRoundLoop.source_files = 'CLHComponents/Classes/ShadeRoundLoop/**/*'
+      shadeRoundLoop.public_header_files = 'CLHComponents/Classes/ShadeRoundLoop/**/*.h'
+  end
+  
+  s.subspec 'ShadowView' do |shadowView|
+      shadowView.source_files = 'CLHComponents/Classes/ShadowView/**/*'
+      shadowView.public_header_files = 'CLHComponents/Classes/ShadowView/**/*.h'
+  end
+  
   s.subspec 'WaterMarkView' do |waterMarkView|
       waterMarkView.source_files = 'CLHComponents/Classes/WaterMarkView/**/*'
       waterMarkView.public_header_files = 'CLHComponents/Classes/WaterMarkView/**/*.h'
   end
   
-  s.subspec 'ShadeRoundLoop' do |shadeRoundLoop|
-      shadeRoundLoop.source_files = 'CLHComponents/Classes/ShadeRoundLoop/**/*'
-      shadeRoundLoop.public_header_files = 'CLHComponents/Classes/ShadeRoundLoop/**/*.h'
-  end
 end

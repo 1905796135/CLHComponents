@@ -16,57 +16,73 @@ static const CGFloat UpdownLayoutNaviBtnTitleHeight = 14.0;
 @end
 
 @implementation UpdownLayoutNaviBtn
-- (CGRect)imageRectForContentRect:(CGRect)contentRect
-{
+
+- (CGRect)imageRectForContentRect:(CGRect)contentRect{
     return CGRectMake(contentRect.size.width/2-UpdownLayoutNaviBtnImgWidth/2, contentRect.size.height/2-(UpdownLayoutNaviBtnImgWidth+UpdownLayoutNaviBtnTitleHeight)/2, UpdownLayoutNaviBtnImgWidth, UpdownLayoutNaviBtnImgWidth);
 }
 
-- (CGRect)titleRectForContentRect:(CGRect)contentRect
-{
+- (CGRect)titleRectForContentRect:(CGRect)contentRect {
     return CGRectMake(0, contentRect.size.height/2-(UpdownLayoutNaviBtnImgWidth+UpdownLayoutNaviBtnTitleHeight)/2+UpdownLayoutNaviBtnImgWidth, contentRect.size.width, UpdownLayoutNaviBtnTitleHeight);
 }
 
 @end
 
 @implementation UIViewController (BarButtonItem)
+//设置导航按钮 显示图片
+- (void)setNaviButtonWithImageName:(NSString *)imageName
+                          position:(BarButtonItemPosition)position {
+    [self setNaviButtonWithImageName:imageName frame:CGRectZero text:nil color:nil font:nil shadowOffset:CGSizeZero alignment:UIControlContentHorizontalAlignmentLeft edgeInsets:UIEdgeInsetsZero isLeft:(position == BarButtonItemPositionLeft)];
+}
 
+- (void)setNaviButtonWithImageName:(NSString *)imageName position:(BarButtonItemPosition)position isBgImage:(BOOL)isBgImage {
+    [self setNaviButtonWithImageName:imageName isBgImage:isBgImage frame:CGRectZero text:nil color:nil font:nil shadowOffset:CGSizeZero alignment:UIControlContentHorizontalAlignmentLeft edgeInsets:UIEdgeInsetsZero isLeft:(position == BarButtonItemPositionLeft)];
+}
 
+- (void)setNaviButtonWithImageName:(NSString *)imageName
+                             frame:(CGRect)aFrame
+                              text:(NSString *)aText
+                             color:(UIColor *)aColor
+                              font:(UIFont *)aFont
+                      shadowOffset:(CGSize)aShadowOffset
+                         alignment:(UIControlContentHorizontalAlignment)aAlignment
+                        edgeInsets:(UIEdgeInsets)aEdgeInsets
+                            isLeft:(BOOL)aLeft {
+    [self setNaviButtonWithImageName:imageName isBgImage:NO frame:aFrame text:aText color:aColor font:aFont shadowOffset:aShadowOffset alignment:aAlignment edgeInsets:aEdgeInsets isLeft:aLeft];
+}
 
 #pragma mark - navi button
-- (void)setNaviButtonType:(BarButtonItem)aType
-                  isBgImg:(BOOL)aIsBgImg
-                    frame:(CGRect)aFrame
-                     text:(NSString *)aText
-                    color:(UIColor *)aColor
-                     font:(UIFont *)aFont
-             shadowOffset:(CGSize)aShadowOffset
-                alignment:(UIControlContentHorizontalAlignment)aAlignment
-               edgeInsets:(UIEdgeInsets)aEdgeInsets
-                   isLeft:(BOOL)aLeft {
+- (void)setNaviButtonWithImageName:(NSString *)imageName
+                           isBgImage:(BOOL)isBgImage
+                             frame:(CGRect)aFrame
+                              text:(NSString *)aText
+                             color:(UIColor *)aColor
+                              font:(UIFont *)aFont
+                      shadowOffset:(CGSize)aShadowOffset
+                         alignment:(UIControlContentHorizontalAlignment)aAlignment
+                        edgeInsets:(UIEdgeInsets)aEdgeInsets
+                            isLeft:(BOOL)aLeft {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     
     if (CGRectEqualToRect(CGRectZero, aFrame)) {
         btn.frame = CGRectMake(0, 0, 24, 24);
-    }
-    else {
+    } else {
         btn.frame = aFrame;
     }
     
     SEL selector = nil;
     if (aLeft) {
         selector = @selector(leftBtnClicked:);
-    }
-    else {
+    } else {
         selector = @selector(rightBtnClicked:);
     }
     
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     
     //根据样式不同更改按钮图片
-    UIImage *normalImage = [UIImage imageNamed:[self imageNameWithType:aType]];
-    UIImage *highlightImage = [UIImage imageNamed:[self imageNameWithType:aType]];
+    UIImage *normalImage = [UIImage imageNamed:imageName];
+    UIImage *highlightImage = [UIImage imageNamed:imageName];
     
-    if (aIsBgImg) {
+    if (isBgImage) {
         [btn setBackgroundImage:normalImage forState:UIControlStateNormal];
         [btn setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
     } else {
@@ -97,37 +113,19 @@ static const CGFloat UpdownLayoutNaviBtnTitleHeight = 14.0;
         btn.contentEdgeInsets = aEdgeInsets;
     }
     
-    
     UIBarButtonItem *btnItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     
     if (aLeft) {
         self.navigationItem.leftBarButtonItem = btnItem;
-    }
-    else {
+    } else {
         self.navigationItem.rightBarButtonItem = btnItem;
     }
 }
 
-- (void)setNaviButtonType:(BarButtonItem)aType
-                    frame:(CGRect)aFrame
-                     text:(NSString *)aText
-                    color:(UIColor *)aColor
-                     font:(UIFont *)aFont
-             shadowOffset:(CGSize)aShadowOffset
-                alignment:(UIControlContentHorizontalAlignment)aAlignment
-               edgeInsets:(UIEdgeInsets)aEdgeInsets
-                   isLeft:(BOOL)aLeft {
-    [self setNaviButtonType:aType isBgImg:NO frame:aFrame text:aText color:aColor font:aFont shadowOffset:aShadowOffset alignment:aAlignment edgeInsets:aEdgeInsets isLeft:aLeft];
-}
-
-- (void)setNaviButtonType:(BarButtonItem)aType position:(BarButtonItemPosition)position {
-    [self setNaviButtonType:aType frame:CGRectZero text:nil color:nil font:nil shadowOffset:CGSizeZero alignment:UIControlContentHorizontalAlignmentLeft edgeInsets:UIEdgeInsetsZero isLeft:(position == BarButtonItemPositionLeft)];
-}
-
-- (void)setNaviButtonText:(NSString *)aText tintColor:(UIColor *)tintColor position:(BarButtonItemPosition)position {
+- (void)setNaviButtonText:(NSString *)text textColor:(UIColor *)textColor position:(BarButtonItemPosition)position {
     BOOL isLeft = position == BarButtonItemPositionLeft;
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:aText style:UIBarButtonItemStylePlain target:self action:isLeft ? @selector(leftBtnClicked:) : @selector(rightBtnClicked:)];
-    item.tintColor = tintColor?tintColor:[UIColor whiteColor];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:text style:UIBarButtonItemStylePlain target:self action:isLeft ? @selector(leftBtnClicked:) : @selector(rightBtnClicked:)];
+    item.tintColor = textColor?textColor:[UIColor whiteColor];
     if (isLeft) {
         self.navigationItem.leftBarButtonItem = item;
     } else {
@@ -135,10 +133,14 @@ static const CGFloat UpdownLayoutNaviBtnTitleHeight = 14.0;
     }
 }
 
-- (void)setUpdownLayoutNaviButtonType:(BarButtonItem)aType text:(NSString *)aText href:(NSString *)aHref items:(NSArray *)aItems position:(BarButtonItemPosition)position {
+- (void)setUpdownLayoutNaviButtonWithImageName:(NSString *)imageName
+                                          text:(NSString *)aText
+                                          href:(NSString *)aHref
+                                         items:(NSArray *)aItems
+                                      position:(BarButtonItemPosition)position {
     BOOL isLeft = position == BarButtonItemPositionLeft;
     DataNaviBtn *btn = nil;
-    if (aType!=BarButtonItemNone && aText.length>0) {
+    if (imageName.length > 0 && aText.length>0) {
         btn = [UpdownLayoutNaviBtn buttonWithType:UIButtonTypeCustom];
     } else {
         btn = [DataNaviBtn buttonWithType:UIButtonTypeCustom];
@@ -150,16 +152,15 @@ static const CGFloat UpdownLayoutNaviBtnTitleHeight = 14.0;
     SEL selector = nil;
     if (isLeft) {
         selector = @selector(leftBtnClicked:);
-    }
-    else {
+    } else {
         selector = @selector(rightBtnClicked:);
     }
     
     [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     
     //根据样式不同更改按钮图片
-    UIImage *normalImage = [UIImage imageNamed:[self imageNameWithType:aType]];
-    UIImage *highlightImage = [UIImage imageNamed:[self imageNameWithType:aType]];
+    UIImage *normalImage = [UIImage imageNamed:imageName];
+    UIImage *highlightImage = [UIImage imageNamed:imageName];
     [btn setImage:normalImage forState:UIControlStateNormal];
     [btn setImage:highlightImage forState:UIControlStateHighlighted];
     
@@ -172,7 +173,7 @@ static const CGFloat UpdownLayoutNaviBtnTitleHeight = 14.0;
     [btn setTitleColor:[UIColor colorWithRed:102.0/255 green:102.0/255 blue:102.0/255 alpha:1] forState:UIControlStateNormal];
     
     //文字字体
-    if (aType!=BarButtonItemNone && aText.length>0) {
+    if (imageName.length > 0 && aText.length>0) {
         btn.titleLabel.font = [UIFont systemFontOfSize:12.0];
     } else {
         btn.titleLabel.font = [UIFont systemFontOfSize:14.0];
@@ -255,50 +256,6 @@ static const CGFloat UpdownLayoutNaviBtnTitleHeight = 14.0;
     titleLabel.textColor = titleColor;
     self.navigationItem.titleView = titleLabel;
     
-}
-- (NSString *)imageNameWithType:(BarButtonItem)type {
-    NSString *imageName = @"";
-    switch (type) {
-        case BarButtonItemNone:
-            imageName = @"";
-            break;
-        case BarButtonItemSearch:
-            imageName = @"";
-            break;
-        case BarButtonItemReturnHome:
-            imageName = @"";
-            break;
-        case BarButtonItemSetting:
-            imageName = @"";
-            break;
-        case BarButtonItemFavorite:
-            imageName = @"";
-            break;
-        case BarButtonItemShare:
-            imageName = @"";
-            break;
-        case BarButtonItemRockNow:
-            imageName = @"";
-            break;
-        case BarButtonItemScan:
-            imageName = @"";
-            break;
-        case BarButtonItemCategory:
-            imageName = @"";
-            break;
-        case BarButtonItemLogo:
-            imageName = @"";
-            break;
-        case BarButtonItemReturn:
-            imageName = @"navigationbar_btn_return";
-            break;
-        case BarButtonItemAddWhite:
-            imageName = @"navigationbar_btn_add_white";
-            break;
-        default:
-            break;
-    }
-    return imageName;
 }
 
 - (void)leftBtnClicked:(id)sender {

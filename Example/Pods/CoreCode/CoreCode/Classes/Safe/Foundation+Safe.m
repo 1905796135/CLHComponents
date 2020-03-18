@@ -1,15 +1,15 @@
 //
-//  Foundation+Safe.m
+//  Foundation+safe.m
 //  Core
 //
 //  Created by Jerry on 2017/9/5.
 //  Copyright © 2017年 com.core. All rights reserved.
 //
 
-#import "Foundation+Safe.h"
+#import "Foundation+safe.h"
 #import <objc/runtime.h>
 
-@implementation NSArray (Safe)
+@implementation NSArray (safe)
 
 + (void)load {
     method_setImplementation(class_getInstanceMethod(self, @selector(objectAtIndexedSubscript:)), class_getMethodImplementation(self, @selector(safeObjectAtIndexedSubscript:)));
@@ -83,12 +83,29 @@
 
 @end
 
-@implementation NSMutableArray (Safe)
+@implementation NSMutableArray (safe)
 
 + (void)load {
     method_setImplementation(class_getInstanceMethod(self, @selector(setObject:atIndexedSubscript:)), class_getMethodImplementation(self, @selector(safeSetObject:atIndexedSubscript:)));
 
     method_setImplementation(class_getInstanceMethod(NSClassFromString(@"__NSArrayM"), @selector(objectAtIndexedSubscript:)), class_getMethodImplementation(self, @selector(safeObjectAtIndexedSubscript:)));
+}
+
+- (id)safeObjectAtIndex:(NSUInteger)index {
+    if (index >= self.count) {
+        NSAssert(FALSE, @"数组越界了[%ld out of %ld]，请解决。。。", (long)index, (long)self.count);
+        return nil;
+    } else {
+        return [self objectAtIndex:index];
+    }
+}
+
+- (id)safeObjectAtIndex:(NSUInteger)index defaultValue:(id)defaultValue {
+    if (index >= self.count) {
+        return defaultValue;
+    } else {
+        return [self objectAtIndex:index];
+    }
 }
 
 - (void)safeSetObject:(id)obj atIndexedSubscript:(NSUInteger)idx {
@@ -165,9 +182,25 @@
     }
 }
 
+- (NSUInteger)safeIndexOfObject:(id)anObject {
+    if (anObject == nil) {
+        return NSNotFound;
+    } else {
+        return [self indexOfObject:anObject];
+    }
+}
+
+- (NSUInteger)safeIndexOfObject:(id)anObject defaultIndex:(NSUInteger)defaultIndex {
+    if (anObject == nil) {
+        return defaultIndex;
+    } else {
+        return [self indexOfObject:anObject];
+    }
+}
+
 @end
 
-@implementation NSDictionary (Safe)
+@implementation NSDictionary (safe)
 
 + (instancetype)safeDictionaryWithObject:(id)object forKey:(id <NSCopying>)key {
     if (!object || !key) {
@@ -213,9 +246,16 @@
     }
 }
 
+- (id)safeObjectForKey:(NSString *)key {
+    if (key && [self objectForKey:key]) {
+        return [self objectForKey:key];
+    }
+    return nil;
+}
+
 @end
 
-@implementation NSString (Safe)
+@implementation NSString (safe)
 
 - (NSString *)safeSubstringFromIndex:(NSUInteger)from {
     if (from > self.length) {
@@ -285,7 +325,7 @@
 
 @end
 
-@implementation NSMutableString (Safe)
+@implementation NSMutableString (safe)
 
 - (void)safeInsertString:(NSString *)aString atIndex:(NSUInteger)loc {
     if (aString == nil) {

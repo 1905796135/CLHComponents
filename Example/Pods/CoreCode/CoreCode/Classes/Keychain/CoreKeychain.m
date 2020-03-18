@@ -8,7 +8,6 @@
 
 #import "CoreKeychain.h"
 #import "KeychainItemWrapper.h"
-#import "CoreMacros.h"
 
 //Key Chain
 #define PB_KEYCHAIN_IDENTITY @"OneTheStore"
@@ -25,8 +24,14 @@
 
 static dispatch_semaphore_t _semaphore;
 
-DEF_SINGLETON(CoreKeychain);
-
++ (instancetype)sharedInstance {
+    static dispatch_once_t once;
+    static CoreKeychain * __singleton__;
+    dispatch_once(&once, ^{
+        __singleton__ = [[CoreKeychain alloc] init];
+    });
+    return __singleton__;
+}
 - (id)init {
     if (self = [super init]) {
         
@@ -63,7 +68,7 @@ DEF_SINGLETON(CoreKeychain);
     }];
     
     if (!find && value) {
-        PBLog(@"error set keychain type [%@], value [%@]",type ,value);
+        NSLog(@"error set keychain type [%@], value [%@]",type ,value);
         return ;
     }
     
@@ -150,7 +155,7 @@ DEF_SINGLETON(CoreKeychain);
             dict = [unarchiver decodeObjectForKey:PB_KEYCHAIN_DICT_ENCODE_KEY_VALUE];
         }
         @catch (NSException *exception) {
-            PBLog(@"keychain 解析错误");
+            NSLog(@"keychain 解析错误");
             [CoreKeychain reset];
         }
     }

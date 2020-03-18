@@ -8,21 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, BarButtonItem) {
-    BarButtonItemNone = 0,        //空的，无图片
-    BarButtonItemSearch,          //搜索
-    BarButtonItemReturnHome,      //返回首页
-    BarButtonItemSetting,         //设置
-    BarButtonItemFavorite,        //收藏
-    BarButtonItemShare,           //分享
-    BarButtonItemRockNow,         //摇一摇
-    BarButtonItemScan,            //扫描
-    BarButtonItemCategory,        //分类
-    BarButtonItemLogo,            //logo
-    BarButtonItemReturn,          //返回上一页
-    BarButtonItemAddWhite,        //白色添加按钮
-};
-
 typedef NS_ENUM(NSUInteger, BarButtonItemPosition) {
     BarButtonItemPositionRight,
     BarButtonItemPositionLeft
@@ -30,24 +15,45 @@ typedef NS_ENUM(NSUInteger, BarButtonItemPosition) {
 
 @interface UIViewController (BarButtonItem)
 
-//设置按钮类型（图片）
-- (void)setNaviButtonType:(BarButtonItem)aType position:(BarButtonItemPosition)position;
+/*
+ * 设置单个 图片导航按钮
+ * imageName 图片名称
+ * position 按钮方向
+ */
+- (void)setNaviButtonWithImageName:(NSString *)imageName position:(BarButtonItemPosition)position;
+/*
+* 设置单个 图片导航按钮
+* imageName 图片名称
+* position 按钮位置
+* isBgImage 是否设置为按钮背景图
+*/
+- (void)setNaviButtonWithImageName:(NSString *)imageName position:(BarButtonItemPosition)position isBgImage:(BOOL)isBgImage;
+/*
+* 设置多个 图片导航按钮
+* imageNameArray 图片名称数组
+* 点击调用 leftBtnClicked:
+*/
+- (void)setNaviBackButtonWithImageNameArray:(NSArray<NSString*>*)imageNameArray;
 
-//设置按钮文字
-- (void)setNaviButtonText:(NSString *)aText tintColor:(UIColor *)tintColor position:(BarButtonItemPosition)position;
+/*
+* 设置单个 文字导航按钮
+* text 文字
+* tintColor 文字颜色
+* position 按钮位置
+*/
+- (void)setNaviButtonText:(NSString *)text textColor:(UIColor *)textColor position:(BarButtonItemPosition)position;
 
 //上下布局的按钮，上面图片，下面文字
-- (void)setUpdownLayoutNaviButtonType:(BarButtonItem)aType
-                                 text:(NSString *)aText
-                                 href:(NSString *)aHref
-                                items:(NSArray *)aItems
-                             position:(BarButtonItemPosition)position;
+- (void)setUpdownLayoutNaviButtonWithImageName:(NSString *)imageName
+                                          text:(NSString *)aText
+                                          href:(NSString *)aHref
+                                         items:(NSArray *)aItems
+                                      position:(BarButtonItemPosition)position;
 
 //自定义返回按钮，点击调用 leftBtnClicked:
 - (void)setNaviBackButtonWithImageName:(NSString*)imageName;
 
-//自定义多个左侧按钮（e.g. back & home）, 点击调用 leftBtnClicked:
-- (void)setNaviBackButtonWithImageNameArray:(NSArray<NSString*>*)imageNameArray;
+
 
 //左按钮点击行为，可在子类重写此方法
 - (void)leftBtnClicked:(id)sender;

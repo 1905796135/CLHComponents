@@ -7,7 +7,6 @@
 //
 
 #import "DeadtimeTimer.h"
-#import "CoreMacros.h"
 
 @interface DeadtimeTimer ()
 
@@ -46,7 +45,7 @@
 
     [self stop];
 
-    WEAK_SELF;
+    __weak typeof(self)weakSelf = self;
     self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:weakSelf selector:@selector(runCountdownView) userInfo:nil repeats:YES];
     NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
     [runLoop addTimer:self.countdownTimer forMode:NSRunLoopCommonModes];
@@ -58,7 +57,7 @@
 }
 
 - (void)dealloc {
-    PBFuncLog;
+    NSLog(@"[%@ call %@]", [self class], NSStringFromSelector(_cmd));
 }
 
 @end

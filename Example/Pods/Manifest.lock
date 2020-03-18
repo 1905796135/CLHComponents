@@ -1,59 +1,279 @@
 PODS:
-  - CLHComponents (0.1.0):
-    - CLHComponents/LinkTextView (= 0.1.0)
-    - CLHComponents/LMReport (= 0.1.0)
-    - CLHComponents/ScrollOptionsMenu (= 0.1.0)
-    - CLHComponents/SearchView (= 0.1.0)
-    - CLHComponents/ShadeRoundLoop (= 0.1.0)
-    - CLHComponents/WaterMarkView (= 0.1.0)
+  - CLHComponents (0.1.9):
+    - CLHComponents/CirclePageView (= 0.1.9)
+    - CLHComponents/LineationLabel (= 0.1.9)
+    - CLHComponents/LinkTextView (= 0.1.9)
+    - CLHComponents/LMReport (= 0.1.9)
+    - CLHComponents/NavigationTitleView (= 0.1.9)
+    - CLHComponents/ScrollOptionsMenu (= 0.1.9)
+    - CLHComponents/SearchView (= 0.1.9)
+    - CLHComponents/ShadeRoundLoop (= 0.1.9)
+    - CLHComponents/ShadowView (= 0.1.9)
+    - CLHComponents/WaterMarkView (= 0.1.9)
     - CoreCode
-    - Masonry
-  - CLHComponents/LinkTextView (0.1.0):
+    - FLAnimatedImage
+    - Masonry (~> 1.1.0)
+    - SDWebImage (~> 4.2.1)
+    - SDWebImage/GIF
+    - SDWebImage/WebP
+  - CLHComponents/CirclePageView (0.1.9):
     - CoreCode
-    - Masonry
-  - CLHComponents/LMReport (0.1.0):
+    - FLAnimatedImage
+    - Masonry (~> 1.1.0)
+    - SDWebImage (~> 4.2.1)
+    - SDWebImage/GIF
+    - SDWebImage/WebP
+  - CLHComponents/LineationLabel (0.1.9):
     - CoreCode
-    - Masonry
-  - CLHComponents/ScrollOptionsMenu (0.1.0):
+    - FLAnimatedImage
+    - Masonry (~> 1.1.0)
+    - SDWebImage (~> 4.2.1)
+    - SDWebImage/GIF
+    - SDWebImage/WebP
+  - CLHComponents/LinkTextView (0.1.9):
     - CoreCode
-    - Masonry
-  - CLHComponents/SearchView (0.1.0):
+    - FLAnimatedImage
+    - Masonry (~> 1.1.0)
+    - SDWebImage (~> 4.2.1)
+    - SDWebImage/GIF
+    - SDWebImage/WebP
+  - CLHComponents/LMReport (0.1.9):
     - CoreCode
-    - Masonry
-  - CLHComponents/ShadeRoundLoop (0.1.0):
+    - FLAnimatedImage
+    - Masonry (~> 1.1.0)
+    - SDWebImage (~> 4.2.1)
+    - SDWebImage/GIF
+    - SDWebImage/WebP
+  - CLHComponents/NavigationTitleView (0.1.9):
     - CoreCode
-    - Masonry
-  - CLHComponents/WaterMarkView (0.1.0):
+    - FLAnimatedImage
+    - Masonry (~> 1.1.0)
+    - SDWebImage (~> 4.2.1)
+    - SDWebImage/GIF
+    - SDWebImage/WebP
+  - CLHComponents/ScrollOptionsMenu (0.1.9):
     - CoreCode
-    - Masonry
-  - CoreCode (1.0.0):
+    - FLAnimatedImage
+    - Masonry (~> 1.1.0)
+    - SDWebImage (~> 4.2.1)
+    - SDWebImage/GIF
+    - SDWebImage/WebP
+  - CLHComponents/SearchView (0.1.9):
+    - CoreCode
+    - FLAnimatedImage
+    - Masonry (~> 1.1.0)
+    - SDWebImage (~> 4.2.1)
+    - SDWebImage/GIF
+    - SDWebImage/WebP
+  - CLHComponents/ShadeRoundLoop (0.1.9):
+    - CoreCode
+    - FLAnimatedImage
+    - Masonry (~> 1.1.0)
+    - SDWebImage (~> 4.2.1)
+    - SDWebImage/GIF
+    - SDWebImage/WebP
+  - CLHComponents/ShadowView (0.1.9):
+    - CoreCode
+    - FLAnimatedImage
+    - Masonry (~> 1.1.0)
+    - SDWebImage (~> 4.2.1)
+    - SDWebImage/GIF
+    - SDWebImage/WebP
+  - CLHComponents/WaterMarkView (0.1.9):
+    - CoreCode
+    - FLAnimatedImage
+    - Masonry (~> 1.1.0)
+    - SDWebImage (~> 4.2.1)
+    - SDWebImage/GIF
+    - SDWebImage/WebP
+  - CoreCode (0.1.7):
+    - CoreCode/Alert (= 0.1.7)
+    - CoreCode/ArchiveData (= 0.1.7)
+    - CoreCode/Authorization (= 0.1.7)
+    - CoreCode/AutoLayoput (= 0.1.7)
+    - CoreCode/Button (= 0.1.7)
+    - CoreCode/Calendar (= 0.1.7)
+    - CoreCode/Color (= 0.1.7)
+    - CoreCode/CoreJSONUtil (= 0.1.7)
+    - CoreCode/Date (= 0.1.7)
+    - CoreCode/DeadtimeTimer (= 0.1.7)
+    - CoreCode/Device (= 0.1.7)
+    - CoreCode/Dictionary (= 0.1.7)
+    - CoreCode/FileUtility (= 0.1.7)
+    - CoreCode/Image (= 0.1.7)
+    - CoreCode/ImageLoader (= 0.1.7)
+    - CoreCode/Keychain (= 0.1.7)
+    - CoreCode/LBS (= 0.1.7)
+    - CoreCode/Notification (= 0.1.7)
+    - CoreCode/NSNumber (= 0.1.7)
+    - CoreCode/Runtime (= 0.1.7)
+    - CoreCode/Safe (= 0.1.7)
+    - CoreCode/Screen (= 0.1.7)
+    - CoreCode/ScrollView (= 0.1.7)
+    - CoreCode/String (= 0.1.7)
+    - CoreCode/UIViewControllerExtension (= 0.1.7)
+    - CoreCode/UIViewExtension (= 0.1.7)
+    - CoreCode/UserDefault (= 0.1.7)
+    - CoreCode/Validation (= 0.1.7)
     - MBProgressHUD
     - ReactiveObjC
+  - CoreCode/Alert (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/ArchiveData (0.1.7):
+    - CoreCode/FileUtility
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Authorization (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/AutoLayoput (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Button (0.1.7):
+    - CoreCode/Runtime
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Calendar (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Color (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/CoreJSONUtil (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Date (0.1.7):
+    - CoreCode/Safe
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/DeadtimeTimer (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Device (0.1.7):
+    - CoreCode/Keychain
+    - CoreCode/Safe
+    - CoreCode/String
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Dictionary (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/FileUtility (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Image (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/ImageLoader (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Keychain (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/LBS (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Notification (0.1.7):
+    - CoreCode/Alert
+    - CoreCode/Safe
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/NSNumber (0.1.7):
+    - CoreCode/Safe
+    - CoreCode/String
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Runtime (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Safe (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Screen (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/ScrollView (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/String (0.1.7):
+    - CoreCode/CoreJSONUtil
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/UIViewControllerExtension (0.1.7):
+    - CoreCode/Image
+    - CoreCode/Runtime
+    - CoreCode/UIViewExtension
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/UIViewExtension (0.1.7):
+    - CoreCode/Runtime
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/UserDefault (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - CoreCode/Validation (0.1.7):
+    - MBProgressHUD
+    - ReactiveObjC
+  - FLAnimatedImage (1.0.12)
+  - libwebp (1.1.0):
+    - libwebp/demux (= 1.1.0)
+    - libwebp/mux (= 1.1.0)
+    - libwebp/webp (= 1.1.0)
+  - libwebp/demux (1.1.0):
+    - libwebp/webp
+  - libwebp/mux (1.1.0):
+    - libwebp/demux
+  - libwebp/webp (1.1.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - ReactiveObjC (3.1.1)
+  - SDWebImage (4.2.3):
+    - SDWebImage/Core (= 4.2.3)
+  - SDWebImage/Core (4.2.3)
+  - SDWebImage/GIF (4.2.3):
+    - FLAnimatedImage (~> 1.0)
+    - SDWebImage/Core
+  - SDWebImage/WebP (4.2.3):
+    - libwebp
+    - SDWebImage/Core
 
 DEPENDENCIES:
   - CLHComponents (from `../`)
+  - CoreCode (from `https://github.com/1905796135/CoreCode.git`, branch `master`)
 
 SPEC REPOS:
   trunk:
-    - CoreCode
+    - FLAnimatedImage
+    - libwebp
     - Masonry
     - MBProgressHUD
     - ReactiveObjC
+    - SDWebImage
 
 EXTERNAL SOURCES:
   CLHComponents:
     :path: "../"
+  CoreCode:
+    :branch: master
+    :git: https://github.com/1905796135/CoreCode.git
+
+CHECKOUT OPTIONS:
+  CoreCode:
+    :commit: eb3e9d4de8db6f49604c5ac3a7fd7be216a354fc
+    :git: https://github.com/1905796135/CoreCode.git
 
 SPEC CHECKSUMS:
-  CLHComponents: 67146b1ff97058bb476045874a2690f51e4ce02b
-  CoreCode: c20bffff4480329ba85c5ab3d82525cd0f52f091
+  CLHComponents: 964eec5abd4d8bcce83ae6e548bc8ca8d41ba24c
+  CoreCode: 35934920a969dc1a8577094c3700ab51e748729a
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  libwebp: 04242ef451672185c1fe41b285a034d2fbda483c
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
 
-PODFILE CHECKSUM: b0a8f7e685c7a8de2d29ac93c77e2175f644f74d
+PODFILE CHECKSUM: 961c459cd8365afb4a89b7ea3661d7afb0a58ed5
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

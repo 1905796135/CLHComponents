@@ -8,7 +8,6 @@
 
 #import "NSFileManager+Utility.h"
 #import <sys/stat.h>
-#import "CoreMacros.h"
 
 @implementation NSFileManager (Utility)
 
@@ -39,7 +38,7 @@ BOOL _createDirectory(NSString *dirPath, BOOL isOverwrite) {
         if (isOverwrite) {
             ret = [fileMng removeItemAtPath:dirPath error:&error];
             ret &= (error == nil);
-            PBLog(@"%s, %@", __FUNCTION__, error);
+            NSLog(@"%s, %@", __FUNCTION__, error);
         }
     }
 
@@ -49,7 +48,7 @@ BOOL _createDirectory(NSString *dirPath, BOOL isOverwrite) {
                                   attributes:nil
                                        error:&error];
         ret &= (error == NULL);
-        PBLog(@"%s, %@", __FUNCTION__, error);
+        NSLog(@"%s, %@", __FUNCTION__, error);
     }
 
     return ret;
@@ -72,7 +71,7 @@ BOOL _copyFile(NSString *from, NSString *to, BOOL isRemove) {
             ret = [[NSFileManager defaultManager] copyItemAtPath:from toPath:to error:&error];
         }
         ret &= (error == NULL);
-        PBLog(@"%s, %@", __FUNCTION__, error);
+        NSLog(@"%s, %@", __FUNCTION__, error);
     }
 
     return ret;
@@ -143,7 +142,7 @@ BOOL _copyDirectory(NSString *from, NSString *to, BOOL isRemove) {
     NSDictionary *attribute = [fileMng attributesOfItemAtPath:path error:&error];
     long long fileLen = 0;
     if (error) {
-        PBLog(@"%s, %@", __FUNCTION__, error);
+        NSLog(@"%s, %@", __FUNCTION__, error);
     } else {
         fileLen = [[attribute objectForKey:NSFileSize] longLongValue];
     }
