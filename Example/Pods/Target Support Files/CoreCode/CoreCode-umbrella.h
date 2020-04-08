@@ -37,7 +37,7 @@
 #import "LocalNotification.h"
 #import "NSObject+BeeNotification.h"
 #import "NSObject+Runtime.h"
-#import "Foundation+safe.h"
+#import "Foundation+Safe.h"
 #import "NSObject+safe.h"
 #import "UIScreen+ScreenType.h"
 #import "UIScrollView+DeliverTouch.h"

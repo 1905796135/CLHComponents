@@ -1,85 +1,85 @@
 PODS:
-  - CLHComponents (0.1.9):
-    - CLHComponents/CirclePageView (= 0.1.9)
-    - CLHComponents/LineationLabel (= 0.1.9)
-    - CLHComponents/LinkTextView (= 0.1.9)
-    - CLHComponents/LMReport (= 0.1.9)
-    - CLHComponents/NavigationTitleView (= 0.1.9)
-    - CLHComponents/ScrollOptionsMenu (= 0.1.9)
-    - CLHComponents/SearchView (= 0.1.9)
-    - CLHComponents/ShadeRoundLoop (= 0.1.9)
-    - CLHComponents/ShadowView (= 0.1.9)
-    - CLHComponents/WaterMarkView (= 0.1.9)
+  - CLHComponents (1.0.0):
+    - CLHComponents/CirclePageView (= 1.0.0)
+    - CLHComponents/LineationLabel (= 1.0.0)
+    - CLHComponents/LinkTextView (= 1.0.0)
+    - CLHComponents/LMReport (= 1.0.0)
+    - CLHComponents/NavigationTitleView (= 1.0.0)
+    - CLHComponents/ScrollOptionsMenu (= 1.0.0)
+    - CLHComponents/SearchView (= 1.0.0)
+    - CLHComponents/ShadeRoundLoop (= 1.0.0)
+    - CLHComponents/ShadowView (= 1.0.0)
+    - CLHComponents/WaterMarkView (= 1.0.0)
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
     - SDWebImage (~> 4.2.1)
     - SDWebImage/GIF
     - SDWebImage/WebP
-  - CLHComponents/CirclePageView (0.1.9):
+  - CLHComponents/CirclePageView (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
     - SDWebImage (~> 4.2.1)
     - SDWebImage/GIF
     - SDWebImage/WebP
-  - CLHComponents/LineationLabel (0.1.9):
+  - CLHComponents/LineationLabel (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
     - SDWebImage (~> 4.2.1)
     - SDWebImage/GIF
     - SDWebImage/WebP
-  - CLHComponents/LinkTextView (0.1.9):
+  - CLHComponents/LinkTextView (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
     - SDWebImage (~> 4.2.1)
     - SDWebImage/GIF
     - SDWebImage/WebP
-  - CLHComponents/LMReport (0.1.9):
+  - CLHComponents/LMReport (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
     - SDWebImage (~> 4.2.1)
     - SDWebImage/GIF
     - SDWebImage/WebP
-  - CLHComponents/NavigationTitleView (0.1.9):
+  - CLHComponents/NavigationTitleView (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
     - SDWebImage (~> 4.2.1)
     - SDWebImage/GIF
     - SDWebImage/WebP
-  - CLHComponents/ScrollOptionsMenu (0.1.9):
+  - CLHComponents/ScrollOptionsMenu (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
     - SDWebImage (~> 4.2.1)
     - SDWebImage/GIF
     - SDWebImage/WebP
-  - CLHComponents/SearchView (0.1.9):
+  - CLHComponents/SearchView (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
     - SDWebImage (~> 4.2.1)
     - SDWebImage/GIF
     - SDWebImage/WebP
-  - CLHComponents/ShadeRoundLoop (0.1.9):
+  - CLHComponents/ShadeRoundLoop (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
     - SDWebImage (~> 4.2.1)
     - SDWebImage/GIF
     - SDWebImage/WebP
-  - CLHComponents/ShadowView (0.1.9):
+  - CLHComponents/ShadowView (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
     - SDWebImage (~> 4.2.1)
     - SDWebImage/GIF
     - SDWebImage/WebP
-  - CLHComponents/WaterMarkView (0.1.9):
+  - CLHComponents/WaterMarkView (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
@@ -265,7 +265,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/1905796135/CoreCode.git
 
 SPEC CHECKSUMS:
-  CLHComponents: 964eec5abd4d8bcce83ae6e548bc8ca8d41ba24c
+  CLHComponents: 917d62af797d22fadd9443f67a5c8e6d35674ad8
   CoreCode: 35934920a969dc1a8577094c3700ab51e748729a
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   libwebp: 04242ef451672185c1fe41b285a034d2fbda483c

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CLHComponents'
-  s.version          = '0.1.9'
+  s.version          = '1.0.0'
   s.summary          = 'iOS开发 常用组件库'
 
 # This description is used to generate tags and improve search results.
