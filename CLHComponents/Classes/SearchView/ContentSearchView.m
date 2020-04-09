@@ -32,16 +32,7 @@
 - (UIImageView *)searchIcon {
     if (!_searchIcon) {
         _searchIcon = [[UIImageView alloc]init];
-        // 注意图片名称的格式，必须写全 @2x 或者 @3x  后缀名都得写
-        NSString *imageName = @"search_icon_black@2x.png";
-        // 获取当前的bundle,self只是在当前pod库中的一个类，也可以随意写一个其他的类
-        NSBundle *currentBundle = [NSBundle bundleForClass:[self class]];
-        // 获取当前bundle的名称
-        // 获取图片的路径
-        NSString *imagePath = [currentBundle pathForResource:imageName ofType:nil inDirectory:@"SearchViewResources.bundle"];
-        // 获取图片
-        UIImage *imageFile = [UIImage imageWithContentsOfFile:imagePath];
-        _searchIcon.image = imageFile;
+        _searchIcon.image = [UIImage imageWithFileName:@"search_icon_black" bundleName:@"SearchViewResources"aClass:[self class]];
         _searchIcon.backgroundColor = [UIColor clearColor];
     }
     return _searchIcon;

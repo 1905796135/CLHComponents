@@ -34,4 +34,7 @@
 // 加强版 检查座机号
 + (BOOL)checkLandlineNumber:(NSString *)aCandidate;
 
+// iOS13 是否支持分屏
++ (BOOL)multipleScene;
+
 @end

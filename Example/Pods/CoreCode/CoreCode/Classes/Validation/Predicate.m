@@ -100,4 +100,12 @@ static NSString *const kPRED_CONDITION_ZUOJIHAO = @"0[0-9]{2,3}-[0-9]{7,8}";//åº
     return [self __checkCandidate:aCandidate condition:PRED_CONDITION_ZUOJIHAO];
 }
 
++ (BOOL)multipleScene {
+    NSDictionary *infoDict = [NSBundle mainBundle].infoDictionary;
+    if ([infoDict objectForKey:@"UIApplicationSceneManifest"]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
 @end

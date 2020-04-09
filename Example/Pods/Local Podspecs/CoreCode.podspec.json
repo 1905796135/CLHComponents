@@ -1,6 +1,6 @@
 {
   "name": "CoreCode",
-  "version": "0.1.7",
+  "version": "0.1.0",
   "summary": "工具类集合 CoreCode",
   "description": "一个简单封装的工具类集合",
   "homepage": "https://github.com/1905796135/CoreCode",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/1905796135/CoreCode.git",
-    "tag": "0.1.7"
+    "tag": "0.1.0"
   },
   "platforms": {
     "ios": "8.0"

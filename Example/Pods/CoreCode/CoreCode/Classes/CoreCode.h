@@ -49,6 +49,7 @@
 #import <CoreCode/NSFileManager+Utility.h>
 
 //Image
+#import <CoreCode/UIImage+Bundle.h>
 #import <CoreCode/UIImage+Color.h>
 #import <CoreCode/UIImage+Size.h>
 
