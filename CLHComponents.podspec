@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
   s.dependency 'CoreCode'
   s.dependency 'Masonry', '~> 1.1.0'
   s.dependency 'FLAnimatedImage'
-  s.dependency 'SDWebImage','~> 4.2.1'
+  s.dependency 'SDWebImage'#,'~> 4.2.1'
   s.dependency 'SDWebImage/GIF'
   s.dependency 'SDWebImage/WebP'
   s.subspec 'LineationLabel' do |lineationLabel|

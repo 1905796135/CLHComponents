@@ -13,77 +13,77 @@ PODS:
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
-    - SDWebImage (~> 4.2.1)
+    - SDWebImage
     - SDWebImage/GIF
     - SDWebImage/WebP
   - CLHComponents/CirclePageView (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
-    - SDWebImage (~> 4.2.1)
+    - SDWebImage
     - SDWebImage/GIF
     - SDWebImage/WebP
   - CLHComponents/LineationLabel (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
-    - SDWebImage (~> 4.2.1)
+    - SDWebImage
     - SDWebImage/GIF
     - SDWebImage/WebP
   - CLHComponents/LinkTextView (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
-    - SDWebImage (~> 4.2.1)
+    - SDWebImage
     - SDWebImage/GIF
     - SDWebImage/WebP
   - CLHComponents/LMReport (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
-    - SDWebImage (~> 4.2.1)
+    - SDWebImage
     - SDWebImage/GIF
     - SDWebImage/WebP
   - CLHComponents/NavigationTitleView (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
-    - SDWebImage (~> 4.2.1)
+    - SDWebImage
     - SDWebImage/GIF
     - SDWebImage/WebP
   - CLHComponents/ScrollOptionsMenu (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
-    - SDWebImage (~> 4.2.1)
+    - SDWebImage
     - SDWebImage/GIF
     - SDWebImage/WebP
   - CLHComponents/SearchView (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
-    - SDWebImage (~> 4.2.1)
+    - SDWebImage
     - SDWebImage/GIF
     - SDWebImage/WebP
   - CLHComponents/ShadeRoundLoop (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
-    - SDWebImage (~> 4.2.1)
+    - SDWebImage
     - SDWebImage/GIF
     - SDWebImage/WebP
   - CLHComponents/ShadowView (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
-    - SDWebImage (~> 4.2.1)
+    - SDWebImage
     - SDWebImage/GIF
     - SDWebImage/WebP
   - CLHComponents/WaterMarkView (1.0.0):
     - CoreCode
     - FLAnimatedImage
     - Masonry (~> 1.1.0)
-    - SDWebImage (~> 4.2.1)
+    - SDWebImage
     - SDWebImage/GIF
     - SDWebImage/WebP
   - CoreCode (0.1.0):
@@ -229,14 +229,14 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - ReactiveObjC (3.1.1)
-  - SDWebImage (4.2.3):
-    - SDWebImage/Core (= 4.2.3)
-  - SDWebImage/Core (4.2.3)
-  - SDWebImage/GIF (4.2.3):
+  - SDWebImage (4.4.8):
+    - SDWebImage/Core (= 4.4.8)
+  - SDWebImage/Core (4.4.8)
+  - SDWebImage/GIF (4.4.8):
     - FLAnimatedImage (~> 1.0)
     - SDWebImage/Core
-  - SDWebImage/WebP (4.2.3):
-    - libwebp
+  - SDWebImage/WebP (4.4.8):
+    - libwebp (< 2.0, >= 0.5)
     - SDWebImage/Core
 
 DEPENDENCIES:
@@ -265,14 +265,14 @@ CHECKOUT OPTIONS:
     :git: https://github.com/1905796135/CoreCode.git
 
 SPEC CHECKSUMS:
-  CLHComponents: 917d62af797d22fadd9443f67a5c8e6d35674ad8
+  CLHComponents: ec56fbf60777af57aa95cd89c30938b78bb7eaa2
   CoreCode: d99e0971890b3e959959fa773c6099748a64cf04
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   libwebp: 04242ef451672185c1fe41b285a034d2fbda483c
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  SDWebImage: 791bb72962b3492327ddcac4b1880bd1b5458431
+  SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
 
 PODFILE CHECKSUM: 961c459cd8365afb4a89b7ea3661d7afb0a58ed5
 
