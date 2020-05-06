@@ -26,6 +26,8 @@ typedef NS_ENUM(NSInteger, TextFieldSearchType) {
 
 @interface TextFieldSearchView : UIView
 
+@property (nonatomic, strong, readonly) UITextField *searchField;
+
 - (instancetype)initWithFrame:(CGRect)frame
                   placeholder:(NSString *)placeholder
                      delegate:(id<TextFieldSearchViewDelegate>)delegate;
