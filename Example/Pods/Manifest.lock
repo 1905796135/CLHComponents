@@ -10,82 +10,24 @@ PODS:
     - CLHComponents/ShadeRoundLoop (= 1.0.0)
     - CLHComponents/ShadowView (= 1.0.0)
     - CLHComponents/WaterMarkView (= 1.0.0)
-    - CoreCode
-    - FLAnimatedImage
-    - Masonry (~> 1.1.0)
-    - SDWebImage
-    - SDWebImage/GIF
-    - SDWebImage/WebP
   - CLHComponents/CirclePageView (1.0.0):
     - CoreCode
     - FLAnimatedImage
-    - Masonry (~> 1.1.0)
+    - Masonry
     - SDWebImage
     - SDWebImage/GIF
     - SDWebImage/WebP
-  - CLHComponents/LineationLabel (1.0.0):
-    - CoreCode
-    - FLAnimatedImage
-    - Masonry (~> 1.1.0)
-    - SDWebImage
-    - SDWebImage/GIF
-    - SDWebImage/WebP
-  - CLHComponents/LinkTextView (1.0.0):
-    - CoreCode
-    - FLAnimatedImage
-    - Masonry (~> 1.1.0)
-    - SDWebImage
-    - SDWebImage/GIF
-    - SDWebImage/WebP
+  - CLHComponents/LineationLabel (1.0.0)
+  - CLHComponents/LinkTextView (1.0.0)
   - CLHComponents/LMReport (1.0.0):
     - CoreCode
-    - FLAnimatedImage
-    - Masonry (~> 1.1.0)
-    - SDWebImage
-    - SDWebImage/GIF
-    - SDWebImage/WebP
-  - CLHComponents/NavigationTitleView (1.0.0):
-    - CoreCode
-    - FLAnimatedImage
-    - Masonry (~> 1.1.0)
-    - SDWebImage
-    - SDWebImage/GIF
-    - SDWebImage/WebP
-  - CLHComponents/ScrollOptionsMenu (1.0.0):
-    - CoreCode
-    - FLAnimatedImage
-    - Masonry (~> 1.1.0)
-    - SDWebImage
-    - SDWebImage/GIF
-    - SDWebImage/WebP
-  - CLHComponents/SearchView (1.0.0):
-    - CoreCode
-    - FLAnimatedImage
-    - Masonry (~> 1.1.0)
-    - SDWebImage
-    - SDWebImage/GIF
-    - SDWebImage/WebP
-  - CLHComponents/ShadeRoundLoop (1.0.0):
-    - CoreCode
-    - FLAnimatedImage
-    - Masonry (~> 1.1.0)
-    - SDWebImage
-    - SDWebImage/GIF
-    - SDWebImage/WebP
-  - CLHComponents/ShadowView (1.0.0):
-    - CoreCode
-    - FLAnimatedImage
-    - Masonry (~> 1.1.0)
-    - SDWebImage
-    - SDWebImage/GIF
-    - SDWebImage/WebP
-  - CLHComponents/WaterMarkView (1.0.0):
-    - CoreCode
-    - FLAnimatedImage
-    - Masonry (~> 1.1.0)
-    - SDWebImage
-    - SDWebImage/GIF
-    - SDWebImage/WebP
+    - Masonry
+  - CLHComponents/NavigationTitleView (1.0.0)
+  - CLHComponents/ScrollOptionsMenu (1.0.0)
+  - CLHComponents/SearchView (1.0.0)
+  - CLHComponents/ShadeRoundLoop (1.0.0)
+  - CLHComponents/ShadowView (1.0.0)
+  - CLHComponents/WaterMarkView (1.0.0)
   - CoreCode (0.1.0):
     - CoreCode/Alert (= 0.1.0)
     - CoreCode/ArchiveData (= 0.1.0)
@@ -265,7 +207,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/1905796135/CoreCode.git
 
 SPEC CHECKSUMS:
-  CLHComponents: ec56fbf60777af57aa95cd89c30938b78bb7eaa2
+  CLHComponents: 212432f46d117a073a4069c3fd251e05654cd757
   CoreCode: d99e0971890b3e959959fa773c6099748a64cf04
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   libwebp: 04242ef451672185c1fe41b285a034d2fbda483c

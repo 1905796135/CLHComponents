@@ -8,7 +8,6 @@
 
 #import "FormComponentView.h"
 #import <Masonry/Masonry.h>
-#import <CoreCode/CoreCode.h>
 #import "LMReport.h"
 @interface FormComponentView ()<LMReportViewDatasource, LMReportViewDelegate>
 
@@ -31,7 +30,7 @@
         _reportView = [[LMReportView alloc]init];
         _reportView.delegate = self;
         _reportView.datasource = self;
-        _reportView.style = [[LMRStyle alloc]initWithSettings:@{LMRBorderColorSettingName:rgb(229, 229, 229)}];
+        _reportView.style = [[LMRStyle alloc]initWithSettings:@{LMRBorderColorSettingName:[UIColor colorWithRed:229.0 / 255.0 green:229.0 / 255.0 blue:229.0 / 255.0 alpha:1]}];
     }
     return _reportView;
 }
@@ -45,7 +44,7 @@
     return self;
 }
 - (void)initUI {
-    [LMRStyle defaultStyle].borderColor = rgb(229, 229, 229);
+    [LMRStyle defaultStyle].borderColor = [UIColor colorWithRed:229.0 / 255.0 green:229.0 / 255.0 blue:229.0 / 255.0 alpha:1];
     [LMRStyle defaultStyle].borderInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     [self addSubview:self.reportView];
     [self.reportView mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -50,12 +50,8 @@ Pod::Spec.new do |s|
 #  s.source_files = 'CLHComponents/Classes/**/*.{h,m}'
   s.source_files = 'CLHComponents/Classes/CLHComponents.h'
   s.public_header_files = 'CLHComponents/Classes/CLHComponents.h'
-  s.dependency 'CoreCode'
-  s.dependency 'Masonry', '~> 1.1.0'
-  s.dependency 'FLAnimatedImage'
-  s.dependency 'SDWebImage'#,'~> 4.2.1'
-  s.dependency 'SDWebImage/GIF'
-  s.dependency 'SDWebImage/WebP'
+  
+    
   s.subspec 'LineationLabel' do |lineationLabel|
       lineationLabel.source_files = 'CLHComponents/Classes/LineationLabel/**/*'
       lineationLabel.public_header_files = 'CLHComponents/Classes/LineationLabel/**/*.h'
@@ -64,6 +60,12 @@ Pod::Spec.new do |s|
   s.subspec 'CirclePageView' do |circlePageView|
       circlePageView.public_header_files = 'CLHComponents/Classes/CirclePageView/**/*.h'
       circlePageView.source_files = 'CLHComponents/Classes/CirclePageView/**/*'
+      circlePageView.dependency 'CoreCode'
+      circlePageView.dependency 'Masonry'
+      circlePageView.dependency 'FLAnimatedImage'
+      circlePageView.dependency 'SDWebImage'#,'~> 4.2.1'
+      circlePageView.dependency 'SDWebImage/GIF'
+      circlePageView.dependency 'SDWebImage/WebP'
   end
   
   s.subspec 'LinkTextView' do |linkTextView|
@@ -74,6 +76,7 @@ Pod::Spec.new do |s|
   s.subspec 'LMReport' do |lMReport|
       lMReport.source_files = 'CLHComponents/Classes/LMReport/**/*'
       lMReport.public_header_files = 'CLHComponents/Classes/LMReport/**/*.h'
+      lMReport.dependency 'Masonry'
   end
   
   s.subspec 'NavigationTitleView' do |lMReport|

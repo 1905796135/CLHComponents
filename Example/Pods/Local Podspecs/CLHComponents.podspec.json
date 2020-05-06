@@ -20,26 +20,6 @@
   },
   "source_files": "CLHComponents/Classes/CLHComponents.h",
   "public_header_files": "CLHComponents/Classes/CLHComponents.h",
-  "dependencies": {
-    "CoreCode": [
-
-    ],
-    "Masonry": [
-      "~> 1.1.0"
-    ],
-    "FLAnimatedImage": [
-
-    ],
-    "SDWebImage": [
-
-    ],
-    "SDWebImage/GIF": [
-
-    ],
-    "SDWebImage/WebP": [
-
-    ]
-  },
   "subspecs": [
     {
       "name": "LineationLabel",
@@ -49,7 +29,27 @@
     {
       "name": "CirclePageView",
       "public_header_files": "CLHComponents/Classes/CirclePageView/**/*.h",
-      "source_files": "CLHComponents/Classes/CirclePageView/**/*"
+      "source_files": "CLHComponents/Classes/CirclePageView/**/*",
+      "dependencies": {
+        "CoreCode": [
+
+        ],
+        "Masonry": [
+
+        ],
+        "FLAnimatedImage": [
+
+        ],
+        "SDWebImage": [
+
+        ],
+        "SDWebImage/GIF": [
+
+        ],
+        "SDWebImage/WebP": [
+
+        ]
+      }
     },
     {
       "name": "LinkTextView",
@@ -59,7 +59,15 @@
     {
       "name": "LMReport",
       "source_files": "CLHComponents/Classes/LMReport/**/*",
-      "public_header_files": "CLHComponents/Classes/LMReport/**/*.h"
+      "public_header_files": "CLHComponents/Classes/LMReport/**/*.h",
+      "dependencies": {
+        "CoreCode": [
+
+        ],
+        "Masonry": [
+
+        ]
+      }
     },
     {
       "name": "NavigationTitleView",
