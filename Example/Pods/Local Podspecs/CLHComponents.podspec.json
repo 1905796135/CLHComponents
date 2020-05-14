@@ -61,9 +61,6 @@
       "source_files": "CLHComponents/Classes/LMReport/**/*",
       "public_header_files": "CLHComponents/Classes/LMReport/**/*.h",
       "dependencies": {
-        "CoreCode": [
-
-        ],
         "Masonry": [
 
         ]

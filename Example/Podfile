@@ -6,7 +6,7 @@ target 'CLHComponents_Example' do
   #pod 'Masonry'
   #pod 'SDWebImageFLPlugin', '~> 0.3.0'
   #pod 'libwebp',:git => 'https://github.com/webmproject/libwebp.git'
-  pod 'CoreCode', :git => 'https://github.com/1905796135/CoreCode.git', :branch => 'master'
+  pod 'CoreCode', :git => 'https://github.com/1905796135/CoreCode.git'
   target 'CLHComponents_Tests' do
     inherit! :search_paths
 
