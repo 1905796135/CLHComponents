@@ -31,7 +31,8 @@
 - (UIScrollView *)mainScrollView {
     if (!_mainScrollView) {
         _mainScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 20, UIScreen.width, UIScreen.height - 200)];
-        [_mainScrollView setContentSize:CGSizeMake(UIScreen.width, [self tits].count*(UIScreen.height - 200))];
+        [_mainScrollView setContentSize:CGSizeMake(UIScreen.width, [self tits].count*(UIScreen.height - 200))]; //ScrollDirectionVertical
+//        [_mainScrollView setContentSize:CGSizeMake([self tits].count*UIScreen.width, UIScreen.height - 200)]; //ScrollDirectionHorizontal
         _mainScrollView.delegate = self;
         _mainScrollView.pagingEnabled = YES;
     }
@@ -45,7 +46,8 @@
     [self.view addSubview:self.mainScrollView];
     
     for (int i = 0; i < [self tits].count; i++) {
-        UIView *vie = [[UIView alloc]initWithFrame:CGRectMake(0, i*(UIScreen.height - 200), UIScreen.width, UIScreen.height - 200)];
+        UIView *vie = [[UIView alloc]initWithFrame:CGRectMake(0, i*(UIScreen.height - 200), UIScreen.width, UIScreen.height - 200)];//ScrollDirectionVertical
+//        UIView *vie = [[UIView alloc]initWithFrame:CGRectMake(i*UIScreen.width, 0, UIScreen.width, UIScreen.height - 200)];//ScrollDirectionHorizontal
         vie.backgroundColor = i%2==0 ? [UIColor greenColor]:[UIColor blueColor];
         [self.mainScrollView addSubview:vie];
     }
