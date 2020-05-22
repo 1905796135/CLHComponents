@@ -15,13 +15,9 @@
     UIColor* _color1;
     UIColor* _color2;
     NSMutableArray *_progressColors;
-    NSString * _lineCapStr;
-    CGFloat _bgWidth;//背景环宽度
-    CGFloat _progressWidth;//进度条宽度
     CGFloat _radius;//半径
     CGPoint _center;//圆心
     CGFloat _progressValue;//进度值
-    CGFloat _duration;//动画时间
     CGFloat _aWidth;
     CGFloat _aHeight;
 }
@@ -30,27 +26,30 @@
 
 @implementation ShadeRoundLoopView
 
-- (instancetype)initWithFrame:(CGRect)frame progressValue:(CGFloat)progress {
-    self = [self initWithFrame:frame];
+- (instancetype)initWithFrame:(CGRect)frame {
+    return [self initWithFrame:frame progress:0.0 lineWidth:5.0];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame progress:(CGFloat)progress lineWidth:(CGFloat)lineWidth {
+    self = [super initWithFrame:frame];
     if (self) {
-        [self setDefaultDataWithProgress:progress];
-        
+        [self setDefaultDataWithProgress:progress lineWidth:lineWidth];
     }
     return self;
 }
 
-- (void)setDefaultDataWithProgress:(CGFloat)progress {
-    _lineCapStr = @"round";
-    _duration = 2.0;
-    _bgWidth = 5.0f;
-    _progressWidth = 5.0f;
-        
+- (void)setDefaultDataWithProgress:(CGFloat)progress lineWidth:(CGFloat)lineWidth {
+    self.lineCap = @"round";
+    self.duration = 2.0;
+    self.lineWidth = 5.0f;
+    self.progressLineWidth = 5.0f;
+    self.autoAnimation = NO;
     
     _aWidth = CGRectGetWidth(self.frame);
     _aHeight = CGRectGetHeight(self.frame);
     
     _bgProgressColor = [UIColor groupTableViewBackgroundColor];
-    _radius = _aWidth*0.5-_progressWidth*0.5-0.5;
+    _radius = _aWidth*0.5-self.progressLineWidth*0.5-0.5;
     _center = CGPointMake(_aWidth * 0.5, _aHeight * 0.5);
         
     
@@ -80,29 +79,18 @@
         }
     }
 }
-
-- (void)setAnimationDuration:(CGFloat)duration {
-    _duration = duration;
-}
     
-
-- (void)setProgressWidth:(CGFloat)progressWidth bgWidth:(CGFloat)bgWidth {
-    _bgWidth = bgWidth;
-    _progressWidth = progressWidth;
-    _radius = _aWidth*0.5-_progressWidth*0.5-0.5;
+- (void)setProgressLineWidth:(CGFloat)progressLineWidth lineWidth:(CGFloat)lineWidth {
+    self.lineWidth = lineWidth;
+    self.progressLineWidth = progressLineWidth;
+    _radius = _aWidth*0.5-self.progressLineWidth*0.5-0.5;
 }
-    
-
-- (void)setLineCapStr:(NSString *)lineCap {
-    _lineCapStr = lineCap?:@"round";
-}
-    
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     _aWidth = CGRectGetWidth(self.bounds);
     _aHeight = CGRectGetHeight(self.bounds);
-    _radius = _aWidth*0.5-_progressWidth*0.5-0.5;
+    _radius = _aWidth*0.5-self.progressLineWidth*0.5-0.5;
     _center = CGPointMake(_aWidth * 0.5, _aHeight * 0.5);
 }
     
@@ -114,7 +102,7 @@
         UIBezierPath* bottomPath = [UIBezierPath bezierPathWithArcCenter:_center radius:_radius startAngle:-M_PI_2 endAngle:M_PI * 2 clockwise:YES];
         CAShapeLayer* shapeLayer = [CAShapeLayer layer];
         shapeLayer.path = bottomPath.CGPath;
-        shapeLayer.lineWidth = _bgWidth;
+        shapeLayer.lineWidth = self.lineWidth;
         shapeLayer.fillColor = [UIColor clearColor].CGColor;
         shapeLayer.strokeColor = _bgProgressColor.CGColor;
         [self.layer addSublayer:shapeLayer];
@@ -124,8 +112,8 @@
     UIBezierPath* path = [UIBezierPath bezierPathWithArcCenter:_center radius:_radius startAngle:1.5*M_PI endAngle:_progressValue clockwise:YES];
     CAShapeLayer* gressLayer = [CAShapeLayer layer];
     gressLayer.path = path.CGPath;
-    gressLayer.lineCap = _lineCapStr;
-    gressLayer.lineWidth = _progressWidth;
+    gressLayer.lineCap = self.lineCap;
+    gressLayer.lineWidth = self.progressLineWidth;
     gressLayer.fillColor = [UIColor clearColor].CGColor;
     gressLayer.strokeColor = [UIColor blueColor].CGColor;
     CAGradientLayer* grad1 = [CAGradientLayer layer];
@@ -136,7 +124,9 @@
     grad1.startPoint = CGPointMake(1, -0.5);
     grad1.endPoint = CGPointMake(0, 0);
     [self.layer addSublayer:grad1];
-    [self showAnimationWith:gressLayer];
+    if (self.autoAnimation) {
+        [self showAnimationWith:gressLayer];
+    }
 }
     
     
@@ -145,7 +135,7 @@
     CABasicAnimation *ani = [ CABasicAnimation animationWithKeyPath : NSStringFromSelector ( @selector (strokeEnd))];
     ani.fromValue = @0;
     ani.toValue = @1;
-    ani.duration = _duration;
+    ani.duration = self.duration;
     [layer addAnimation:ani forKey:NSStringFromSelector(@selector(strokeEnd))];
 }
 

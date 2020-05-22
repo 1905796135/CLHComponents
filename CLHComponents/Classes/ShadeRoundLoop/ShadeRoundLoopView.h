@@ -12,7 +12,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ShadeRoundLoopView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame progressValue:(CGFloat)progress;
+@property (nonatomic, assign) BOOL autoAnimation; // 设置是否需要动画
+@property (nonatomic, assign) CGFloat duration;//动画时间
+
+/*
+ * 设置进度条 两端 是否圆角 lineCap Options are `butt', `round' and `square'. Defaults to `round'.
+ */
+@property (nonatomic, strong) NSString *lineCap;
+@property (nonatomic, assign) CGFloat progressLineWidth;//进度环 宽度
+@property (nonatomic, assign) CGFloat lineWidth;//背景环 宽度
+/**
+ * progress 0.0~1.0
+ * loopWidth 环的宽度
+ */
+- (instancetype)initWithFrame:(CGRect)frame progress:(CGFloat)progress lineWidth:(CGFloat)lineWidth;
 
 /**
  * 设置进度环 颜色
@@ -24,22 +37,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- * progressWidth 进度环宽度
- * bgWidth 背景环宽度
+ * progressLineWidth 进度环宽度
+ * lineWidth 背景环宽度
  */
-- (void)setProgressWidth:(CGFloat)progressWidth bgWidth:(CGFloat)bgWidth;
-
-/**
- * 设置动画时间
- */
-- (void)setAnimationDuration:(CGFloat)duration;
-
-/**
- * 设置进度条 两端 是否圆角
- * lineCap Options are `butt', `round' and `square'. Defaults to `round'.
- *
- */
-- (void)setLineCapStr:(NSString *)lineCap;
+- (void)setProgressLineWidth:(CGFloat)progressLineWidth lineWidth:(CGFloat)lineWidth;
 
 /**
  * progressValue 进度值 0~1

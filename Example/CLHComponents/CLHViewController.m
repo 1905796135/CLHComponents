@@ -75,7 +75,11 @@
     label.lineType = LineationLabelLineTypeMiddle;
     [self.mainScrollView addSubview:label];
     
-    [self.mainScrollView setContentSize:CGSizeMake(UIScreen.width, CGRectGetMaxY(label.frame) + 100)];
+    ShadeRoundLoopView *roundLoopView = [[ShadeRoundLoopView alloc]initWithFrame:CGRectMake(50, CGRectGetMaxY(label.frame) + 20, 150, 150) progress:0.5 lineWidth:15];
+    [roundLoopView setProgressColors:@[[UIColor redColor],[UIColor yellowColor],[UIColor blueColor]] bgProgressColor:[UIColor grayColor]];
+    [self.mainScrollView addSubview:roundLoopView];
+    
+    [self.mainScrollView setContentSize:CGSizeMake(UIScreen.width, CGRectGetMaxY(roundLoopView.frame) + 100)];
 }
 
 #pragma mark - ContentSearchViewDelegate
