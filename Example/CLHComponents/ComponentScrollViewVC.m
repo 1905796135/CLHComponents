@@ -20,11 +20,18 @@
 - (ScrollOptionsMenuView *)optionsView {
     if (!_optionsView) {
         _optionsView = [[ScrollOptionsMenuView alloc]initWithFrame:CGRectMake(50, 135, UIScreen.width - 100, 35) scrollDirection:ScrollDirectionVertical];
+        _optionsView.highlightLine.hidden = YES;
         [_optionsView updateDataArray:[self tits]];
         [_optionsView setLineSize:CGSizeMake(15, 3)];
         [_optionsView setMinimumInteritemSpacing:20];
+        [_optionsView setContentEdgeInsets:UIEdgeInsetsMake(5, 10, 5, 10)];
+        
+        [_optionsView setNormalTitleColor:[UIColor whiteColor] normalFont:[UIFont systemFontOfSize:14] selectedColor:[UIColor whiteColor]  selectedFont:[UIFont systemFontOfSize:14]];
+        
+        [_optionsView setNormalBackgroundColor:[UIColor colorWithRed:67/255.0 green:67/255.0 blue:67/255.0 alpha:1.0] selectedBackgroundColor:[UIColor colorWithRed:122/255.0 green:122/255.0 blue:122/255.0 alpha:1.0] normalCornerRadius:5 selectedCornerRadius:5];
+       
         _optionsView.delegate = self;
-        _optionsView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _optionsView.backgroundColor = [UIColor colorWithRed:67/255.0 green:67/255.0 blue:67/255.0 alpha:1.0];
     }
     return _optionsView;
 }

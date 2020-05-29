@@ -26,6 +26,10 @@
            selectedColor:(UIColor *_Nullable)selectedColor
             selectedFont:(UIFont *_Nullable)selectedFont;
 
+- (void)setNormalBackgroundColor:(UIColor *_Nullable)normalBackgroundColor
+         selectedBackgroundColor:(UIColor *_Nullable)selectedBackgroundColor
+              normalCornerRadius:(CGFloat)normalCornerRadius
+            selectedCornerRadius:(CGFloat)selectedCornerRadius;
 @end
 
 NS_ASSUME_NONNULL_BEGIN
@@ -60,6 +64,17 @@ typedef NS_ENUM(NSInteger,ScrollDirection) {
                  normalFont:(UIFont *_Nullable)normalFont
               selectedColor:(UIColor *_Nullable)selectedColor
                selectedFont:(UIFont *_Nullable)selectedFont;
+
+/**设置 item 背景色 和 圆角
+ * normalBlackColor 未选中时 的 背景色
+ * selectedBlackColor 选中时的 背景色
+ * normalCornerRadius 未选中时的 圆角
+ * selectedCornerRadius 选中时的 圆角
+*/
+- (void)setNormalBackgroundColor:(UIColor *_Nullable)normalBackgroundColor
+         selectedBackgroundColor:(UIColor *_Nullable)selectedBackgroundColor
+              normalCornerRadius:(CGFloat)normalCornerRadius
+            selectedCornerRadius:(CGFloat)selectedCornerRadius;
 
 /**
  * 设置选中线 的size

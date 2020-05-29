@@ -62,7 +62,19 @@
     self.titleBtn.titleLabel.font = self.titleBtn.selected ? selectedFont : normalFont;
     self.titleBtn.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
 }
-
+- (void)setNormalBackgroundColor:(UIColor *_Nullable)normalBackgroundColor
+         selectedBackgroundColor:(UIColor *_Nullable)selectedBackgroundColor
+              normalCornerRadius:(CGFloat)normalCornerRadius
+            selectedCornerRadius:(CGFloat)selectedCornerRadius {
+    if (self.titleBtn.selected) {
+        self.titleBtn.backgroundColor = selectedBackgroundColor;
+        self.titleBtn.layer.cornerRadius = selectedCornerRadius;
+    } else {
+        self.titleBtn.backgroundColor = normalBackgroundColor;
+         self.titleBtn.layer.cornerRadius = normalCornerRadius;
+    }
+    self.titleBtn.layer.masksToBounds = YES;
+}
 @end
 #define  cell_Identifier @"optionsitemcell"
 @interface ScrollOptionsMenuView ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -77,8 +89,12 @@
     CGSize _lineSize;
     UIFont *_normalFont;
     UIColor *_normalColor;
+    UIColor *_normalBackgroundColor;
+    CGFloat _normalCornerRadius;
     UIFont *_selectedFont;
     UIColor *_selectedColor;
+    UIColor *_selectedBackgroundColor;
+    CGFloat _selectedCornerRadius;
     CGFloat _animateDuration;
     CGFloat _minimumInteritemSpacing;
     UIEdgeInsets _contentEdgeInsets;
@@ -137,7 +153,7 @@
     _contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
     _minimumInteritemSpacing = 10;
     _currentSelectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    self.collectionView.frame = CGRectMake(_contentEdgeInsets.left, _contentEdgeInsets.top, CGRectGetWidth(self.frame) - 2*_contentEdgeInsets.left, CGRectGetHeight(self.frame) - (_contentEdgeInsets.top + _contentEdgeInsets.bottom));
+    self.collectionView.frame = CGRectMake(_contentEdgeInsets.left, 0, CGRectGetWidth(self.frame) - 2*_contentEdgeInsets.left, CGRectGetHeight(self.frame));
     [self addSubview:self.collectionView];
     [self.collectionView addSubview:self.highlightLine];
 }
@@ -176,6 +192,16 @@
     _selectedFont = selectedFont?:_selectedFont;
     [self.collectionView reloadData];
 }
+- (void)setNormalBackgroundColor:(UIColor *_Nullable)normalBackgroundColor
+         selectedBackgroundColor:(UIColor *_Nullable)selectedBackgroundColor
+              normalCornerRadius:(CGFloat)normalCornerRadius
+            selectedCornerRadius:(CGFloat)selectedCornerRadius {
+    _normalBackgroundColor = normalBackgroundColor;
+    _selectedBackgroundColor = selectedBackgroundColor;
+    _normalCornerRadius = normalCornerRadius;
+    _selectedCornerRadius = selectedCornerRadius;
+    [self.collectionView reloadData];
+}
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     _isTapSelected = YES;
@@ -198,6 +224,7 @@
     OptionsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cell_Identifier forIndexPath:indexPath];
     [cell updateWithModel:[self.dataArray objectAtIndex:indexPath.row]];
     [cell setNormalTitleColor:_normalColor normalFont:_normalFont selectedColor:_selectedColor selectedFont:_selectedFont];
+    [cell setNormalBackgroundColor:_normalBackgroundColor selectedBackgroundColor:_selectedBackgroundColor normalCornerRadius:_normalCornerRadius selectedCornerRadius:_selectedCornerRadius];
     return cell;
 }
 
@@ -209,13 +236,15 @@
     } else {
         itemSize = [model.title sizeWithAttributes:@{NSFontAttributeName:_normalFont}];
     }
-    return CGSizeMake(itemSize.width, collectionView.bounds.size.height);
+    return CGSizeMake(itemSize.width + 10, collectionView.bounds.size.height - (_contentEdgeInsets.top + _contentEdgeInsets.bottom));
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return _minimumInteritemSpacing;
 }
-
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(_contentEdgeInsets.top, 0, _contentEdgeInsets.bottom, 0);
+}
 - (void)scrollToSelectedCellWithSelectedIndexPath:(NSIndexPath *)selectedIndexPath {
     
     NSArray *visibleIndexArray = [[self.collectionView indexPathsForVisibleItems] sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
@@ -350,7 +379,7 @@
 
 - (void)setContentEdgeInsets:(UIEdgeInsets)edgeInsets {
     _contentEdgeInsets = edgeInsets;
-    self.collectionView.frame = CGRectMake(_contentEdgeInsets.left, _contentEdgeInsets.top, CGRectGetWidth(self.frame) - 2*_contentEdgeInsets.left, CGRectGetHeight(self.frame) - (_contentEdgeInsets.top + _contentEdgeInsets.bottom));
+    self.collectionView.frame = CGRectMake(_contentEdgeInsets.left, 0, CGRectGetWidth(self.frame) - 2*_contentEdgeInsets.left, CGRectGetHeight(self.frame));
     [self addSubview:self.collectionView];
 }
 
