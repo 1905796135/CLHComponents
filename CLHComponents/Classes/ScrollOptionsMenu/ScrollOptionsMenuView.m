@@ -147,7 +147,7 @@
     _isTapSelected = NO;
     _normalFont = [UIFont fontWithName:@"PingFangSC-Medium" size:15];
     _selectedFont = [UIFont fontWithName:@"PingFangSC-Medium" size:15];
-    [self setLineSize:CGSizeMake(30, 2)];
+    _lineSize = CGSizeMake(30, 2);
     _normalColor = [UIColor colorWithRed:51.f/255.f green:51.f/255.f blue:51.f/255.f alpha:1];
     _selectedColor = [UIColor colorWithRed:255.f/255.f green:83.f/255.f blue:0.f/255.f alpha:1];
     _contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
@@ -364,8 +364,6 @@
 
 - (void)setLineSize:(CGSize)lineSize {
     _lineSize = lineSize;
-    self.highlightLine.frame = CGRectMake(self.highlightLine.frame.origin.x, self.highlightLine.frame.origin.y, _lineSize.width, _lineSize.height);
-    self.highlightLine.center = [self getLineFrameWithIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
 }
 
 - (void)setAnimateDuration:(CGFloat)duration {
