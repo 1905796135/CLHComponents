@@ -75,11 +75,24 @@
     label.lineType = LineationLabelLineTypeMiddle;
     [self.mainScrollView addSubview:label];
     
-    ShadeRoundLoopView *roundLoopView = [[ShadeRoundLoopView alloc]initWithFrame:CGRectMake(50, CGRectGetMaxY(label.frame) + 20, 150, 150) progress:0.5 lineWidth:15];
-    [roundLoopView setProgressColors:@[[UIColor redColor],[UIColor yellowColor],[UIColor blueColor]] bgProgressColor:[UIColor grayColor]];
+    ShadeRoundLoopView *roundLoopView = [[ShadeRoundLoopView alloc]initWithFrame:CGRectMake(50, CGRectGetMaxY(label.frame) + 20, 78, 78)];
+    roundLoopView.reduceAngle = 0;
+    roundLoopView.tag = 111099;
+    roundLoopView.progressLoopWidth = 10;
+    roundLoopView.backLoopWidth = 10;
+    roundLoopView.backLoopColor = rgb(239, 242, 250);
+    roundLoopView.startAngle = -90;
+    roundLoopView.reduceAngle = 30;
+    roundLoopView.progress = 0.1;
+    roundLoopView.duration = 0.5;
+    roundLoopView.autoAnimation = NO;
+    roundLoopView.increaseFromLast = YES;
+    roundLoopView.progressColors = @[rgb(250, 100, 0),[UIColor yellowColor],[UIColor blueColor]];
     [self.mainScrollView addSubview:roundLoopView];
     
     [self.mainScrollView setContentSize:CGSizeMake(UIScreen.width, CGRectGetMaxY(roundLoopView.frame) + 100)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"右" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemAction:)];
 }
 
 #pragma mark - ContentSearchViewDelegate
@@ -106,6 +119,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
+    
 }
 
 - (NSMutableArray<NSMutableArray<LMRModel*>*> *)formData {
@@ -146,5 +160,8 @@
     
     return arr;
 }
-
+- (void)rightBarButtonItemAction:(UIBarButtonItem *)ba {
+    ShadeRoundLoopView *roundLoopView = (ShadeRoundLoopView *)[self.view viewWithTag:111099];
+    roundLoopView.progress = roundLoopView.progress + 0.1;
+}
 @end

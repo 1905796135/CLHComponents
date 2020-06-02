@@ -12,40 +12,43 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ShadeRoundLoopView : UIView
 
-@property (nonatomic, assign) BOOL autoAnimation; // 设置是否需要动画
-@property (nonatomic, assign) CGFloat duration;//动画时间
+/** 动画时间 */
+@property (nonatomic, assign) CGFloat duration;
 
-/*
- * 设置进度条 两端 是否圆角 lineCap Options are `butt', `round' and `square'. Defaults to `round'.
- */
+/** 是否需要动画 */
+@property (nonatomic, assign) BOOL autoAnimation;
+
+/** 进度值 0.0 ~ 1.0  */
+@property (nonatomic, assign) CGFloat progress;
+
+/** 进度环 宽度 */
+@property (nonatomic, assign) CGFloat progressLoopWidth;
+
+/** 进度环 颜色 传多个 支持 渐变色 */
+@property (nonatomic, strong) NSArray<UIColor *> *progressColors;
+
+/** 背景环 宽度 */
+@property (nonatomic, assign) CGFloat backLoopWidth;
+
+/** 背景环 颜色 */
+@property (nonatomic, strong) UIColor *backLoopColor;
+
+/** 环内 填充色 */
+@property (nonatomic, strong) UIColor *fillColor;
+
+/**  设置进度条 两端 是否圆角 lineCap Options are `butt', `round' and `square'. Defaults to `round'. */
 @property (nonatomic, strong) NSString *lineCap;
-@property (nonatomic, assign) CGFloat progressLineWidth;//进度环 宽度
-@property (nonatomic, assign) CGFloat lineWidth;//背景环 宽度
-/**
- * progress 0.0~1.0
- * loopWidth 环的宽度
- */
-- (instancetype)initWithFrame:(CGRect)frame progress:(CGFloat)progress lineWidth:(CGFloat)lineWidth;
-
-/**
- * 设置进度环 颜色
- * 渐变色环 需要传入至少三个 不同颜色
- * 单色环  需要传入至少两个相同颜色
- * bgProgressColor 背景环颜色
- */
-- (void)setProgressColors:(NSArray<UIColor*>*)colors bgProgressColor:(UIColor *)bgProgressColor;
 
 
-/**
- * progressLineWidth 进度环宽度
- * lineWidth 背景环宽度
- */
-- (void)setProgressLineWidth:(CGFloat)progressLineWidth lineWidth:(CGFloat)lineWidth;
+/** < 起点角度。角度从水平右侧开始为0，传 正数 起点在水平线 上方  起点在水平线 下方  顺时针  */
+@property (nonatomic, assign) CGFloat startAngle;
 
-/**
- * progressValue 进度值 0~1
- */
-- (void)updateProgress:(CGFloat)progressValue;
+/**<减少的角度 直接传度数 如30*/
+@property (nonatomic, assign) CGFloat reduceAngle;
+
+/**<是否从上次数值开始动画，默认为NO */
+@property (nonatomic, assign) BOOL increaseFromLast;
+
 
 @end
 

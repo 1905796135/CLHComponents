@@ -7,141 +7,185 @@
 //
 
 #import "ShadeRoundLoopView.h"
-
+#define degreeToRadian(d) ((d)*M_PI)/180.0
+#define rgb(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 @interface ShadeRoundLoopView () {
-    UIBezierPath* _bottomPath;
-    UIColor* _bgProgressColor;//背景环颜色
-    UIColor* _color0;
-    UIColor* _color1;
-    UIColor* _color2;
-    NSMutableArray *_progressColors;
-    CGFloat _radius;//半径
-    CGPoint _center;//圆心
-    CGFloat _progressValue;//进度值
-    CGFloat _aWidth;
-    CGFloat _aHeight;
+    CGFloat _progress;//进度值
 }
+@property (nonatomic, assign) CGFloat radius;//半径
+@property (nonatomic, assign) CGPoint loopCenter;;//圆心
+@property (nonatomic, assign) CGFloat lastProgress; /**<上次进度 0-1 */
+@property (nonatomic, strong) UIBezierPath *lastProgressLoopPath;
+
+@property (nonatomic, strong) CAShapeLayer *backLoopShapeLayer;
+@property (nonatomic, strong) CAShapeLayer *progressShapeLayer;
+@property (nonatomic, strong) CAGradientLayer *progressGradientLayer;
 
 @end
 
 @implementation ShadeRoundLoopView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    return [self initWithFrame:frame progress:0.0 lineWidth:5.0];
+- (CGFloat)radius {
+    return CGRectGetWidth(self.frame)*0.5-self.progressLoopWidth*0.5-0.5;
+}
+- (CGPoint)loopCenter {
+    return CGPointMake(CGRectGetWidth(self.frame) * 0.5, CGRectGetHeight(self.frame) * 0.5);
 }
 
-- (instancetype)initWithFrame:(CGRect)frame progress:(CGFloat)progress lineWidth:(CGFloat)lineWidth {
+- (CAShapeLayer *)backLoopShapeLayer {
+    if (!_backLoopShapeLayer) {
+        _backLoopShapeLayer = [CAShapeLayer layer];
+        _backLoopShapeLayer.lineCap = self.lineCap;
+        _backLoopShapeLayer.lineWidth = self.backLoopWidth;
+        _backLoopShapeLayer.strokeColor = self.backLoopColor.CGColor;
+        _backLoopShapeLayer.fillColor = self.fillColor.CGColor;
+        
+    }
+    return _backLoopShapeLayer;
+}
+- (CAShapeLayer *)progressShapeLayer {
+    if (!_progressShapeLayer) {
+        _progressShapeLayer = [CAShapeLayer layer];
+        _progressShapeLayer.lineCap = self.lineCap;
+        _progressShapeLayer.lineWidth = self.progressLoopWidth;
+        _progressShapeLayer.strokeColor = self.progressColors.firstObject.CGColor;
+        _progressShapeLayer.fillColor = self.fillColor.CGColor;
+        
+    }
+    return _progressShapeLayer;
+}
+
+- (CAGradientLayer *)progressGradientLayer {
+    if (!_progressGradientLayer) {
+        _progressGradientLayer = [CAGradientLayer layer];
+        _progressGradientLayer.locations = @[@0.25f,@0.5f,@0.75f];
+        _progressGradientLayer.startPoint = CGPointMake(1, -0.5);
+        _progressGradientLayer.endPoint = CGPointMake(0, 0);
+    }
+    return _progressGradientLayer;
+}
+
+- (UIBezierPath *)backLoopPath {
+    return [UIBezierPath bezierPathWithArcCenter:self.loopCenter radius:self.radius startAngle:self.startAngle endAngle:(2 * M_PI - self.reduceAngle + self.startAngle) clockwise:YES];
+}
+
+- (UIBezierPath *)progressLoopPath {
+    BOOL clockwise = NO;
+    if (self.progress < self.lastProgress && self.increaseFromLast) {
+        clockwise = YES;
+    }
+    CGFloat startAngle = self.increaseFromLast?(2*M_PI - self.reduceAngle) * self.lastProgress + self.startAngle:self.startAngle;
+    CGFloat endAngle = (2*M_PI - self.reduceAngle) * self.progress + self.startAngle;
+    return [UIBezierPath bezierPathWithArcCenter:self.loopCenter radius:self.radius startAngle:startAngle endAngle:endAngle clockwise:!clockwise];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setDefaultDataWithProgress:progress lineWidth:lineWidth];
+        [self setDefaultData];
     }
     return self;
 }
 
-- (void)setDefaultDataWithProgress:(CGFloat)progress lineWidth:(CGFloat)lineWidth {
+- (void)setDefaultData {
     self.lineCap = @"round";
+    
     self.duration = 2.0;
-    self.lineWidth = 5.0f;
-    self.progressLineWidth = 5.0f;
     self.autoAnimation = NO;
+    self.increaseFromLast = NO;
+    self.startAngle = degreeToRadian(0);
+    self.reduceAngle = degreeToRadian(0);
     
-    _aWidth = CGRectGetWidth(self.frame);
-    _aHeight = CGRectGetHeight(self.frame);
+    self.fillColor = [UIColor clearColor];
     
-    _bgProgressColor = [UIColor groupTableViewBackgroundColor];
-    _radius = _aWidth*0.5-self.progressLineWidth*0.5-0.5;
-    _center = CGPointMake(_aWidth * 0.5, _aHeight * 0.5);
-        
+    self.backLoopWidth = 5.0f;
+    self.backLoopColor = rgb(233, 233, 233);
     
-    _progressColors = [NSMutableArray array];
-    UIColor *color0 = [UIColor colorWithRed:247.0 / 255.0 green:215.0 / 255.0 blue:109.0 / 255.0 alpha:1.0];
-    UIColor *color1 = [UIColor colorWithRed:248.0 / 255.0 green:160.0 / 255.0 blue:60.0 / 255.0 alpha:1.0];
-    UIColor *color2 = [UIColor colorWithRed:224.0 / 255.0 green:123.0 / 255.0 blue:52.0 / 255.0 alpha:1.0];
-        
+    self.progressLoopWidth = 5.0f;
+    self.progressColors = @[rgb(247.0, 215.0, 109.0),rgb(248.0, 160.0, 60.0),rgb(224.0, 123.0, 52.0)];
+   
+    self.progress = 0.5f;
     
-    [_progressColors addObject:(id)color0.CGColor];
-    [_progressColors addObject:(id)color1.CGColor];
-    [_progressColors addObject:(id)color2.CGColor];
-    
-    [self updateProgress:progress];
-    
-}
-    
-
-- (void)setProgressColors:(NSArray<UIColor*>*)colors bgProgressColor:(UIColor *)bgProgressColor {
-    if (bgProgressColor) {
-        _bgProgressColor = bgProgressColor;
-    }
-    if (colors && colors.count > 0) {
-        [_progressColors removeAllObjects];
-        for (UIColor *item  in colors) {
-            [_progressColors addObject:(id)item.CGColor];
-        }
-    }
-}
-    
-- (void)setProgressLineWidth:(CGFloat)progressLineWidth lineWidth:(CGFloat)lineWidth {
-    self.lineWidth = lineWidth;
-    self.progressLineWidth = progressLineWidth;
-    _radius = _aWidth*0.5-self.progressLineWidth*0.5-0.5;
+    self.progressGradientLayer.mask = self.progressShapeLayer;
+    [self.layer addSublayer:self.backLoopShapeLayer];
+    [self.layer addSublayer:self.progressShapeLayer];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _aWidth = CGRectGetWidth(self.bounds);
-    _aHeight = CGRectGetHeight(self.bounds);
-    _radius = _aWidth*0.5-self.progressLineWidth*0.5-0.5;
-    _center = CGPointMake(_aWidth * 0.5, _aHeight * 0.5);
-}
     
+    self.backLoopShapeLayer.path = [self backLoopPath].CGPath;
+    self.progressShapeLayer.path  = [self progressLoopPath].CGPath;
 
-- (void)updateProgress:(CGFloat)progressValue {
-    [self clearAllBezierPath];
-    _progressValue = progressValue * 2*M_PI + 1.5*M_PI;//当前进度值
-    if (_bottomPath == nil) {
-        UIBezierPath* bottomPath = [UIBezierPath bezierPathWithArcCenter:_center radius:_radius startAngle:-M_PI_2 endAngle:M_PI * 2 clockwise:YES];
-        CAShapeLayer* shapeLayer = [CAShapeLayer layer];
-        shapeLayer.path = bottomPath.CGPath;
-        shapeLayer.lineWidth = self.lineWidth;
-        shapeLayer.fillColor = [UIColor clearColor].CGColor;
-        shapeLayer.strokeColor = _bgProgressColor.CGColor;
-        [self.layer addSublayer:shapeLayer];
-        _bottomPath = bottomPath;
-    }
-    
-    UIBezierPath* path = [UIBezierPath bezierPathWithArcCenter:_center radius:_radius startAngle:1.5*M_PI endAngle:_progressValue clockwise:YES];
-    CAShapeLayer* gressLayer = [CAShapeLayer layer];
-    gressLayer.path = path.CGPath;
-    gressLayer.lineCap = self.lineCap;
-    gressLayer.lineWidth = self.progressLineWidth;
-    gressLayer.fillColor = [UIColor clearColor].CGColor;
-    gressLayer.strokeColor = [UIColor blueColor].CGColor;
-    CAGradientLayer* grad1 = [CAGradientLayer layer];
-    grad1.mask = gressLayer;
-    grad1.frame = CGRectMake(0, 0,_aWidth, _aHeight);
-    grad1.colors = _progressColors;
-    grad1.locations=@[@0.25f,@0.5f,@0.75f];
-    grad1.startPoint = CGPointMake(1, -0.5);
-    grad1.endPoint = CGPointMake(0, 0);
-    [self.layer addSublayer:grad1];
     if (self.autoAnimation) {
-        [self showAnimationWith:gressLayer];
+        [self showAnimationWith:self.progressShapeLayer];
     }
+    self.lastProgress = self.progress;
 }
-    
-    
 
+- (void)setLineCap:(NSString *)lineCap {
+    _lineCap = lineCap;
+    self.progressShapeLayer.lineCap = _lineCap;
+    self.backLoopShapeLayer.lineCap = _lineCap;
+}
+
+- (void)setBackLoopWidth:(CGFloat)backLoopWidth {
+    _backLoopWidth = backLoopWidth;
+    self.backLoopShapeLayer.lineWidth = _backLoopWidth;
+}
+
+- (void)setBackLoopColor:(UIColor *)backLoopColor {
+    _backLoopColor = backLoopColor;
+    self.backLoopShapeLayer.strokeColor = _backLoopColor.CGColor;
+}
+
+- (void)setFillColor:(UIColor *)fillColor {
+    _fillColor = fillColor;
+    self.backLoopShapeLayer.fillColor = _fillColor.CGColor;
+    self.progressShapeLayer.fillColor = _fillColor.CGColor;
+}
+
+- (void)setProgressLoopWidth:(CGFloat)progressLoopWidth {
+    _progressLoopWidth = progressLoopWidth;
+    self.progressShapeLayer.lineWidth = _progressLoopWidth;
+}
+
+- (void)setProgressColors:(NSArray<UIColor *> *)progressColors{
+    NSMutableArray *colors = [NSMutableArray array];
+    if (progressColors && progressColors.count > 0) {
+        for (UIColor *item  in progressColors) {
+            [colors addObject:(id)item.CGColor];
+        }
+    }
+    _progressColors = progressColors;
+    self.progressShapeLayer.strokeColor = _progressColors.firstObject.CGColor;
+    self.progressGradientLayer.colors = colors;
+}
+
+- (void)setProgress:(CGFloat)progress {
+    _progress = MAX(MIN(1, progress), 0);
+    [self setNeedsLayout];
+    
+}
+
+- (void)setStartAngle:(CGFloat)startAngle {
+    _startAngle = degreeToRadian(-startAngle);
+}
+
+- (void)setReduceAngle:(CGFloat)reduceAngle {
+    if (reduceAngle>=360) {
+        return;
+    }
+    _reduceAngle = degreeToRadian(reduceAngle);
+}
 - (void)showAnimationWith:(CAShapeLayer*)layer {
-    CABasicAnimation *ani = [ CABasicAnimation animationWithKeyPath : NSStringFromSelector ( @selector (strokeEnd))];
-    ani.fromValue = @0;
-    ani.toValue = @1;
-    ani.duration = self.duration;
-    [layer addAnimation:ani forKey:NSStringFromSelector(@selector(strokeEnd))];
-}
-
-- (void)clearAllBezierPath {
-    [self.layer removeAllAnimations];
-    _bottomPath = nil;
+    CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    pathAnimation.duration = self.duration;
+    pathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    pathAnimation.fromValue = [NSNumber numberWithFloat:self.increaseFromLast ? self.lastProgress : 0];
+    pathAnimation.toValue = [NSNumber numberWithFloat:self.progress];
+    pathAnimation.fillMode = kCAFillModeForwards;
+    pathAnimation.removedOnCompletion = NO;
+    [layer addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
 }
 
 @end
