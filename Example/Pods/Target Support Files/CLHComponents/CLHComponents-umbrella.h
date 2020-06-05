@@ -11,16 +11,6 @@
 #endif
 
 #import "CLHComponents.h"
-#import "BasePageControl.h"
-#import "BlockImageView.h"
-#import "CirclePageView.h"
-#import "CycleAutomaticPageView.h"
-#import "CycleCustomPageView.h"
-#import "CycleImageContentView.h"
-#import "CycleImagePageView.h"
-#import "CycleImagePageViewCell.h"
-#import "LoadingImageView.h"
-#import "PlaceholderImageView.h"
 #import "FormComponentView.h"
 #import "LMReport.h"
 #import "LMReportView.h"

@@ -27,31 +27,6 @@
       "public_header_files": "CLHComponents/Classes/LineationLabel/**/*.h"
     },
     {
-      "name": "CirclePageView",
-      "public_header_files": "CLHComponents/Classes/CirclePageView/**/*.h",
-      "source_files": "CLHComponents/Classes/CirclePageView/**/*",
-      "dependencies": {
-        "CoreCode": [
-
-        ],
-        "Masonry": [
-
-        ],
-        "FLAnimatedImage": [
-
-        ],
-        "SDWebImage": [
-
-        ],
-        "SDWebImage/GIF": [
-
-        ],
-        "SDWebImage/WebP": [
-
-        ]
-      }
-    },
-    {
       "name": "LinkTextView",
       "source_files": "CLHComponents/Classes/LinkTextView/**/*",
       "public_header_files": "CLHComponents/Classes/LinkTextView/**/*.h"

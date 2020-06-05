@@ -7,7 +7,6 @@
 //
 
 #import "ComponentScrollViewVC.h"
-#import <CoreCode/CoreCode.h>
 #import <CLHComponents/ScrollOptionsMenuView.h>
 @interface ComponentScrollViewVC ()<ScrollOptionsMenuDelegate,UIScrollViewDelegate>
 
@@ -19,7 +18,7 @@
 @implementation ComponentScrollViewVC
 - (ScrollOptionsMenuView *)optionsView {
     if (!_optionsView) {
-        _optionsView = [[ScrollOptionsMenuView alloc]initWithFrame:CGRectMake(50, 135, UIScreen.width - 100, 35) scrollDirection:ScrollDirectionVertical];
+        _optionsView = [[ScrollOptionsMenuView alloc]initWithFrame:CGRectMake(50, 135, [UIScreen mainScreen].bounds.size.width - 100, 35) scrollDirection:ScrollDirectionVertical];
         _optionsView.highlightLine.hidden = YES;
         [_optionsView updateDataArray:[self tits]];
         [_optionsView setLineSize:CGSizeMake(15, 3)];
@@ -37,8 +36,8 @@
 }
 - (UIScrollView *)mainScrollView {
     if (!_mainScrollView) {
-        _mainScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 20, UIScreen.width, UIScreen.height - 200)];
-        [_mainScrollView setContentSize:CGSizeMake(UIScreen.width, [self tits].count*(UIScreen.height - 200))]; //ScrollDirectionVertical
+        _mainScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 20, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 200)];
+        [_mainScrollView setContentSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, [self tits].count*([UIScreen mainScreen].bounds.size.height - 200))]; //ScrollDirectionVertical
 //        [_mainScrollView setContentSize:CGSizeMake([self tits].count*UIScreen.width, UIScreen.height - 200)]; //ScrollDirectionHorizontal
         _mainScrollView.delegate = self;
         _mainScrollView.pagingEnabled = YES;
@@ -53,7 +52,7 @@
     [self.view addSubview:self.mainScrollView];
     
     for (int i = 0; i < [self tits].count; i++) {
-        UIView *vie = [[UIView alloc]initWithFrame:CGRectMake(0, i*(UIScreen.height - 200), UIScreen.width, UIScreen.height - 200)];//ScrollDirectionVertical
+        UIView *vie = [[UIView alloc]initWithFrame:CGRectMake(0, i*([UIScreen mainScreen].bounds.size.height - 200), [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 200)];//ScrollDirectionVertical
 //        UIView *vie = [[UIView alloc]initWithFrame:CGRectMake(i*UIScreen.width, 0, UIScreen.width, UIScreen.height - 200)];//ScrollDirectionHorizontal
         vie.backgroundColor = i%2==0 ? [UIColor greenColor]:[UIColor blueColor];
         [self.mainScrollView addSubview:vie];
@@ -63,7 +62,7 @@
 #pragma mark - ScrollOptionsMenuDelegate
 - (void)didSelectedItemWithIndex:(NSInteger)index {
 //    NSLog(@"点击了 %ld",(long)index);
-    [self.mainScrollView setContentOffset:CGPointMake(index*UIScreen.width, 0) animated:YES];
+    [self.mainScrollView setContentOffset:CGPointMake(index*[UIScreen mainScreen].bounds.size.width, 0) animated:YES];
 }
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {

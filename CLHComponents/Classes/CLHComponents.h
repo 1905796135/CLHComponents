@@ -8,8 +8,6 @@
 #ifndef Components_h
 #define Components_h
 
-#import <CLHComponents/CirclePageView.h>
-
 #import <CLHComponents/LineationLabel.h>
 
 #import <CLHComponents/LinkCustomTextView.h>

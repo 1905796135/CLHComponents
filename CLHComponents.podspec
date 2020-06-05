@@ -57,17 +57,6 @@ Pod::Spec.new do |s|
       lineationLabel.public_header_files = 'CLHComponents/Classes/LineationLabel/**/*.h'
   end
   
-  s.subspec 'CirclePageView' do |circlePageView|
-      circlePageView.public_header_files = 'CLHComponents/Classes/CirclePageView/**/*.h'
-      circlePageView.source_files = 'CLHComponents/Classes/CirclePageView/**/*'
-      circlePageView.dependency 'CoreCode'
-      circlePageView.dependency 'Masonry'
-      circlePageView.dependency 'FLAnimatedImage'
-      circlePageView.dependency 'SDWebImage'#,'~> 4.2.1'
-      circlePageView.dependency 'SDWebImage/GIF'
-      circlePageView.dependency 'SDWebImage/WebP'
-  end
-  
   s.subspec 'LinkTextView' do |linkTextView|
       linkTextView.source_files = 'CLHComponents/Classes/LinkTextView/**/*'
       linkTextView.public_header_files = 'CLHComponents/Classes/LinkTextView/**/*.h'

@@ -1,6 +1,0 @@
-framework module Pods_CLHComponents_Tests {
-  umbrella header "Pods-CLHComponents_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}
